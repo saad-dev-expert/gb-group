@@ -1,0 +1,305 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EnquiryForm from "../../components/EnquiryForm.astro";
+
+const pageTitle = "Transport and Export in Jharkhand | GB Group";
+const pageDescription = "GB Group Transport & Export services in Jharkhand and West Bengal. Professional goods transport, industrial freight logistics, Haldia and Kolkata port export assistance, and on-time delivery.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} canonicalPath="/services/transport-export">
+  <div class="container section">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> &gt; <a href="/services">Services</a> &gt; <span>Transport &amp; Export</span>
+    </nav>
+
+    <div class="section-header">
+      <span class="section-subtitle">Service 01 &bull; Logistics &amp; Trade</span>
+      <h1 class="section-title">Transport and Export in Jharkhand &amp; West Bengal</h1>
+      <p class="section-desc">
+        Safe, reliable goods transportation, heavy freight logistics, and specialized export support linking Jharkhand's industrial zones to West Bengal ports and global destinations.
+      </p>
+    </div>
+
+    <!-- Visual Banner / Intro Card -->
+    <div class="card service-hero-card">
+      <div class="grid-2">
+        <div class="service-hero-text">
+          <span class="badge" style="margin-bottom: 0.75rem;">On-Time &amp; Safe Delivery</span>
+          <h2>Comprehensive Freight Movement &amp; Export Guidance</h2>
+          <p>
+            Transporting goods across state lines and facilitating export clearances can be complex. <strong>GB Group</strong> provides end-to-end transport and export solutions, managing fleet movement, transit safety, documentation, and port coordination under one reliable roof.
+          </p>
+          <div class="hero-key-points">
+            <div class="point-item">
+              <strong>Verified Fleets:</strong> GPS-tracked trucks, trailers, and multi-axle freight carriers.
+            </div>
+            <div class="point-item">
+              <strong>Port Access:</strong> Direct handling and coordination at Kolkata and Haldia ports.
+            </div>
+          </div>
+        </div>
+        <div class="service-hero-img-box">
+          <img src="/images/transport.svg" alt="GB Group Transport and Export" class="service-img" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed 3-Pillar Content -->
+    <div class="grid-3" style="margin-top: 3rem;">
+      <!-- Pillar 1: What is Transported -->
+      <div class="card detail-card">
+        <div class="detail-header">
+          <div class="detail-num">01</div>
+          <h3>What Is Transported</h3>
+        </div>
+        <p class="detail-intro">
+          We handle diverse cargo categories tailored to manufacturers, traders, and suppliers:
+        </p>
+        <ul class="detail-list">
+          <li><strong>Industrial &amp; Steel Cargo:</strong> TMT bars, structural steel, fabrication materials, machinery, and equipment.</li>
+          <li><strong>Raw Materials &amp; Minerals:</strong> Minerals, ores, cement, coal by-products, and building materials.</li>
+          <li><strong>Manufactured &amp; Commercial Goods:</strong> FMCG products, consumer goods, retail merchandise, and packaged items.</li>
+          <li><strong>Containerized Freight:</strong> Standard 20ft and 40ft shipping containers for domestic transit and port export.</li>
+          <li><strong>Agricultural &amp; Perishable Commodities:</strong> Grains, produce, and bulk farm output requiring timely delivery.</li>
+        </ul>
+      </div>
+
+      <!-- Pillar 2: Where the Service Reaches -->
+      <div class="card detail-card">
+        <div class="detail-header">
+          <div class="detail-num">02</div>
+          <h3>Where The Service Reaches</h3>
+        </div>
+        <p class="detail-intro">
+          Extensive coverage spanning Jharkhand, West Bengal, and connecting eastern corridors:
+        </p>
+        <ul class="detail-list">
+          <li><strong>Jharkhand Core Corridors:</strong> Ranchi, Jamshedpur (Adityapur industrial belt), Bokaro Steel City, Dhanbad, Ramgarh, and Giridih.</li>
+          <li><strong>West Bengal Hubs:</strong> Kolkata metropolitan area, Howrah freight complexes, Hooghly, Durgapur, Asansol, and Siliguri.</li>
+          <li><strong>Port Gateways:</strong> Kolkata Port (Syama Prasad Mookerjee Port) and Haldia Dock Complex.</li>
+          <li><strong>Interstate Links:</strong> Seamless transit between Jharkhand, West Bengal, Bihar, Odisha, and Northeast transit points.</li>
+        </ul>
+      </div>
+
+      <!-- Pillar 3: Export Support -->
+      <div class="card detail-card">
+        <div class="detail-header">
+          <div class="detail-num">03</div>
+          <h3>What Help Is Given With Export</h3>
+        </div>
+        <p class="detail-intro">
+          Navigating export hurdles smoothly with dedicated documentation and port clearance support:
+        </p>
+        <ul class="detail-list">
+          <li><strong>Export Documentation Guidance:</strong> Invoices, packing lists, shipping bills, and e-way bills prepared accurately.</li>
+          <li><strong>Customs &amp; Port Coordination:</strong> Liaison with customs clearing agents, port authorities, and terminal operators.</li>
+          <li><strong>Container Yard (CY) &amp; Port Delivery:</strong> Coordinating container movement right up to the vessel dock or ICD.</li>
+          <li><strong>Transit Insurance Support:</strong> Helping safeguard your high-value cargo against damage or loss in transit.</li>
+          <li><strong>Real-Time Transit Tracking:</strong> Regular updates from loading point until final destination delivery.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Assurance Banner -->
+    <div class="card assurance-banner" style="margin-top: 3rem;">
+      <div class="assurance-content">
+        <h3>Safe and On-Time Delivery Guarantee</h3>
+        <p>
+          At GB Group, punctuality and cargo security are our highest priorities. Our dedicated dispatchers and on-ground supervisors ensure smooth transit without unnecessary delays or hidden charges.
+        </p>
+      </div>
+      <div class="assurance-action">
+        <a href="tel:+917439786518" class="btn btn-call">
+          Call for Transport Quote
+        </a>
+      </div>
+    </div>
+
+    <!-- Direct Enquiry Form Section -->
+    <div style="margin-top: 4rem;" id="transport-enquiry">
+      <div class="section-header">
+        <span class="section-subtitle">Book Your Logistics</span>
+        <h2 class="section-title">Enquire for Transport &amp; Export</h2>
+        <p class="section-desc">Submit your requirement for immediate freight availability and transparent pricing.</p>
+      </div>
+      <EnquiryForm
+        title="Transport & Export Enquiry"
+        subtitle="Specify pickup, drop location in Jharkhand / West Bengal and cargo type"
+        preselectedService="Transport & Export"
+        isFixedService={true}
+        formId="transportEnquiryForm"
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumb {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-primary);
+  }
+
+  .service-hero-card {
+    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+    border: 1px solid #bfdbfe;
+    padding: 2.5rem;
+  }
+
+  .service-hero-text h2 {
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .service-hero-text p {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-key-points {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .point-item {
+    font-size: 0.925rem;
+    color: #334155;
+    background: #ffffff;
+    padding: 0.65rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .point-item strong {
+    color: var(--color-primary-dark);
+  }
+
+  .service-hero-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-img {
+    max-height: 240px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  /* Detail Cards */
+  .detail-card {
+    border-top: 4px solid var(--color-primary);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detail-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .detail-num {
+    width: 38px;
+    height: 38px;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .detail-header h3 {
+    font-size: 1.2rem;
+    color: var(--color-primary-dark);
+    margin: 0;
+  }
+
+  .detail-intro {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+  }
+
+  .detail-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .detail-list li {
+    padding-left: 1.25rem;
+    position: relative;
+    color: #334155;
+    line-height: 1.5;
+  }
+
+  .detail-list li::before {
+    content: "✓";
+    color: var(--color-accent);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .detail-list strong {
+    color: var(--color-primary-dark);
+  }
+
+  /* Assurance Banner */
+  .assurance-banner {
+    background-color: #0f2252;
+    color: #ffffff;
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .assurance-banner {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  .assurance-content h3 {
+    color: #ffffff;
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .assurance-content p {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .assurance-action .btn {
+    white-space: nowrap;
+    background-color: var(--color-accent);
+    color: #ffffff;
+  }
+
+  .assurance-action .btn:hover {
+    background-color: #0369a1;
+  }
+</style>

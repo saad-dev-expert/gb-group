@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" fill="none">
+  <rect width="400" height="260" rx="16" fill="#f0fdf4"/>
+  <!-- Campus / Building silhouette -->
+  <g transform="translate(50, 110)">
+    <!-- Main pillars -->
+    <rect x="20" y="30" width="260" height="80" rx="4" fill="#cbd5e1"/>
+    <!-- Pediment -->
+    <polygon points="150,0 20,30 280,30" fill="#18337a"/>
+    <!-- Columns -->
+    <rect x="50" y="30" width="16" height="80" fill="#f8fafc"/>
+    <rect x="95" y="30" width="16" height="80" fill="#f8fafc"/>
+    <rect x="142" y="30" width="16" height="80" fill="#f8fafc"/>
+    <rect x="189" y="30" width="16" height="80" fill="#f8fafc"/>
+    <rect x="234" y="30" width="16" height="80" fill="#f8fafc"/>
+    <!-- Base -->
+    <rect x="10" y="110" width="280" height="15" rx="3" fill="#0f2252"/>
+  </g>
+  <!-- Graduation Cap -->
+  <g transform="translate(140, 25)">
+    <polygon points="60,10 120,35 60,60 0,35" fill="#18337a"/>
+    <polygon points="60,25 105,42 60,60 15,42" fill="#264bb5"/>
+    <!-- Skull cap -->
+    <path d="M25 45v20c0 15 20 25 35 25s35-10 35-25V45" fill="#0f2252"/>
+    <!-- Tassel -->
+    <path d="M60 35c20 5 35 20 40 40" stroke="#f59e0b" stroke-width="3" fill="none"/>
+    <circle cx="100" cy="77" r="4" fill="#f59e0b"/>
+  </g>
+  <!-- Placement & Success Badge -->
+  <g transform="translate(285, 30)">
+    <circle cx="45" cy="45" r="35" fill="#18337a"/>
+    <path d="M30 45l10 10 20-20" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

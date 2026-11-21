@@ -1,0 +1,168 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import EnquiryForm from "../components/EnquiryForm.astro";
+
+const pageTitle = "Our Services | GB Group";
+const pageDescription = "Explore the 4 specialized services of GB Group across Jharkhand & West Bengal: Transport & Export, Education Consultant & Placement, Land Sales & Joint Work, and Advertisement & Marketing.";
+
+const services = [
+  {
+    title: "Transport & Export",
+    description: "Reliable goods transport, commercial freight movement, and end-to-end export support connecting Jharkhand and West Bengal with national corridors and international trade gateways.",
+    link: "/services/transport-export",
+    badge: "Service 01",
+    features: [
+      "Industrial & bulk cargo transport",
+      "Kolkata & Haldia port export coordination",
+      "Documentation, customs & shipping support",
+      "Safe, insured and on-time delivery"
+    ]
+  },
+  {
+    title: "Education Consultant & Placement",
+    description: "Personalized guidance for course selection, college and university admissions, career counselling, and job placement assistance for students across Eastern India.",
+    link: "/services/education-placement",
+    badge: "Service 02",
+    features: [
+      "UG, PG & professional course guidance",
+      "Admissions in accredited universities & colleges",
+      "One-on-one career counselling",
+      "Job placement support with corporate recruiters"
+    ]
+  },
+  {
+    title: "Land Sales & Joint Work",
+    description: "End-to-end real estate agency specializing in verified land acquisition, plot sales, and profitable joint ventures between landowners and reputed builders.",
+    link: "/services/land-joint-work",
+    badge: "Service 03",
+    features: [
+      "Commercial, residential & industrial plots",
+      "Joint venture (JV) structuring & contracts",
+      "Clear title legal verification & documentation",
+      "Location-wise listings: Area, Size, Purpose"
+    ]
+  },
+  {
+    title: "Advertisement & Marketing",
+    description: "Holistic marketing and brand-building agency services for retail, MSMEs, institutions, and enterprises looking for high-visibility growth in Jharkhand & West Bengal.",
+    link: "/services/advertising-marketing",
+    badge: "Service 04",
+    features: [
+      "Brand identity & commercial advertising",
+      "Social media campaigns & digital promotion",
+      "Outdoor posters, banners & hoardings",
+      "Local promotion & ground activation"
+    ]
+  }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} canonicalPath="/services">
+  <div class="container section">
+    <div class="section-header">
+      <span class="section-subtitle">Comprehensive Solutions</span>
+      <h1 class="section-title">Our Services</h1>
+      <p class="section-desc">
+        GB Group brings you four specialized services under one roof in Jharkhand &amp; West Bengal. Each service is managed with transparency, punctuality, and dedicated support.
+      </p>
+    </div>
+
+    <!-- 4 Service Cards Grid -->
+    <div class="grid-2 services-overview-grid">
+      {services.map((srv) => (
+        <ServiceCard
+          title={srv.title}
+          description={srv.description}
+          link={srv.link}
+          badge={srv.badge}
+          features={srv.features}
+        />
+      ))}
+    </div>
+
+    <!-- Regional Capabilities Note -->
+    <div class="capabilities-box card" style="margin-top: 3.5rem;">
+      <div class="grid-2">
+        <div>
+          <span class="badge" style="margin-bottom: 0.5rem;">Regional Coverage</span>
+          <h3>Jharkhand &amp; West Bengal Network</h3>
+          <p>
+            Whether moving heavy industrial goods from Jamshedpur to Kolkata Port, finding prime commercial land in Ranchi, securing admissions in top institutes, or running multi-city promotional campaigns, GB Group has the localized resources and leadership to deliver.
+          </p>
+        </div>
+        <div class="quick-contact-highlight">
+          <h4>Have an urgent business requirement?</h4>
+          <p>Talk directly to CEO Mohit Mallar for immediate consultation and quotation.</p>
+          <div class="highlight-actions">
+            <a href="tel:+917439786518" class="btn btn-call btn-sm">Call 74397 86518</a>
+            <a href="https://wa.me/917439786518" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm">WhatsApp Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enquiry Section -->
+    <div style="margin-top: 4rem;" id="service-enquiry">
+      <div class="section-header">
+        <span class="section-subtitle">Request a Service</span>
+        <h2 class="section-title">Choose a Service &amp; Enquire</h2>
+        <p class="section-desc">Select any of our 4 services below to receive a detailed proposal.</p>
+      </div>
+      <EnquiryForm
+        title="Service Enquiry Form"
+        subtitle="Connect directly with CEO Mohit Mallar via WhatsApp and Email"
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .services-overview-grid {
+    gap: 2rem;
+  }
+
+  .capabilities-box {
+    background-color: var(--color-primary-surface);
+    border: 1px solid #bfdbfe;
+    padding: 2.5rem;
+  }
+
+  .capabilities-box h3 {
+    margin-bottom: 0.75rem;
+    color: var(--color-primary-dark);
+  }
+
+  .capabilities-box p {
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .quick-contact-highlight {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .quick-contact-highlight h4 {
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .quick-contact-highlight p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+</style>
