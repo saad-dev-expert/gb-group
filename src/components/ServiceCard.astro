@@ -1,113 +1,22 @@
 ---
-interface Props {
-  title: string;
-  description: string;
-  link: string;
-  badge?: string;
-  icon?: string;
-  features?: string[];
-}
+import type { Service } from "../config/site";
 
-const {
-  title,
-  description,
-  link,
-  badge = "Service",
-  features = [],
-} = Astro.props;
+interface Props {
+  service: Service;
+  index?: number;
+}
+const { service, index } = Astro.props;
 ---
 
-<div class="card service-card">
-  <div class="card-top">
-    <span class="badge">{badge}</span>
-    <h3 class="service-title">
-      <a href={link}>{title}</a>
-    </h3>
+<a class="service-tile" href={service.path} style={`--tile-accent:${service.accent}`} data-reveal>
+  <div class="service-tile-media">
+    <img src={service.image} alt={service.imageAlt} loading="lazy" decoding="async" width="1000" height="700" />
+    {index !== undefined && <span class="service-tile-index">0{index + 1}</span>}
   </div>
-
-  <p class="service-desc">{description}</p>
-
-  {features.length > 0 && (
-    <ul class="service-features">
-      {features.map((item) => (
-        <li>
-          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" class="check-icon">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-          </svg>
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  )}
-
-  <div class="card-footer">
-    <a href={link} class="btn btn-primary btn-sm service-btn">
-      View Details &rarr;
-    </a>
+  <div class="service-tile-body">
+    <span class="eyebrow">{service.kicker}</span>
+    <h3>{service.title}</h3>
+    <p>{service.short}</p>
+    <span class="tile-link">Explore service <span aria-hidden="true">→</span></span>
   </div>
-</div>
-
-<style>
-  .service-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    border-top: 4px solid var(--color-primary);
-  }
-
-  .card-top {
-    margin-bottom: 0.85rem;
-  }
-
-  .service-title {
-    font-size: 1.25rem;
-    margin-top: 0.5rem;
-  }
-
-  .service-title a {
-    color: var(--color-primary-dark);
-  }
-
-  .service-title a:hover {
-    color: var(--color-accent);
-  }
-
-  .service-desc {
-    color: #475569;
-    font-size: 0.95rem;
-    line-height: 1.55;
-    margin-bottom: 1.25rem;
-  }
-
-  .service-features {
-    list-style: none;
-    margin-bottom: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-  }
-
-  .service-features li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: #334155;
-  }
-
-  .check-icon {
-    color: var(--color-accent);
-    flex-shrink: 0;
-  }
-
-  .card-footer {
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .service-btn {
-    width: 100%;
-  }
-</style>
+</a>

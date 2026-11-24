@@ -1,332 +1,176 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import EnquiryForm from "../../components/EnquiryForm.astro";
+import FAQ from "../../components/FAQ.astro";
+import { faqs, listings, waLink } from "../../config/site";
+import { serviceSchema, faqSchema } from "../../lib/schema";
 
-const pageTitle = "Land Sales & Joint Work in Jharkhand & West Bengal | GB Group";
-const pageDescription = "GB Group Land Sales and Joint Work in Jharkhand and West Bengal. Transparent land buying, verified property sales, and profitable joint ventures in prime locations.";
-
-// Location-wise Land Listings (Area, Size, Purpose)
-const listings = [
-  {
-    area: "Kolkata - Sector V & New Town (West Bengal)",
-    size: "25 Kathas to 2.5 Acres",
-    purpose: "Commercial IT Park / Corporate Office / Hotel",
-    status: "Verified & Available",
-    type: "Joint Venture / Outright Sale"
-  },
-  {
-    area: "Ranchi - Ring Road & Tupudana (Jharkhand)",
-    size: "3 Acres to 10 Acres",
-    purpose: "Industrial Unit / Warehousing Logistics Park",
-    status: "Verified & Available",
-    type: "Joint Venture / Long-term Lease"
-  },
-  {
-    area: "Jamshedpur - Adityapur Industrial Area (Jharkhand)",
-    size: "1.5 Acres to 5 Acres",
-    purpose: "Manufacturing Plant / Auto Ancillary / Workshop",
-    status: "Verified & Available",
-    type: "Direct Sale / Joint Venture"
-  },
-  {
-    area: "Durgapur - NH-19 Expressway (West Bengal)",
-    size: "2 Acres to 8 Acres",
-    purpose: "Commercial Complex / Showroom / Freight Depot",
-    status: "Verified & Available",
-    type: "Joint Venture / Outright Sale"
-  },
-  {
-    area: "Dhanbad - Govindpur Corridor (Jharkhand)",
-    size: "2 Acres to 6 Acres",
-    purpose: "Commercial Transport Yard / Mineral Processing",
-    status: "Verified & Available",
-    type: "Direct Sale"
-  },
-  {
-    area: "Howrah - National Highway Corridor (West Bengal)",
-    size: "50 Kathas to 4 Acres",
-    purpose: "Logistics Hub / Warehousing / Residential Township",
-    status: "Verified & Available",
-    type: "Joint Venture"
-  },
-  {
-    area: "Siliguri - Eastern Bypass Corridor (West Bengal)",
-    size: "2 Acres to 7 Acres",
-    purpose: "Hospitality Resort / Institutional Campus / Storage",
-    status: "Verified & Available",
-    type: "Joint Venture / Direct Sale"
-  }
+const pageTitle = "Land Sales & Joint Ventures in Jharkhand & West Bengal | GB GROUP";
+const pageDescription =
+  "GB GROUP facilitates clear-title land sales and structured joint ventures between landowners and credible developers across Jharkhand and West Bengal.";
+const crumbs = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Land Sales & Joint Work" },
 ];
+const featured = listings.slice(0, 3);
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} canonicalPath="/services/land-joint-work">
-  <div class="container section">
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a> &gt; <a href="/services">Services</a> &gt; <span>Land Sales &amp; Joint Work</span>
-    </nav>
-
-    <div class="section-header">
-      <span class="section-subtitle">Service 03 &bull; Real Estate &amp; Joint Ventures</span>
-      <h1 class="section-title">Land Sales &amp; Joint Work in Jharkhand &amp; West Bengal</h1>
-      <p class="section-desc">
-        Facilitating clear-title land acquisition, verified property sales, and structured joint venture partnerships for commercial, residential, and industrial ventures.
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/services/land-joint-work"
+  accent="land"
+  breadcrumbs={crumbs}
+  schema={[
+    serviceSchema({
+      name: "Land Sales & Joint Work",
+      description: pageDescription,
+      path: "/services/land-joint-work",
+      image: "/images/land-field.webp",
+    }),
+    faqSchema(faqs.land),
+  ]}
+>
+  <section class="page-hero">
+    <img class="hero-bg" src="/images/land-field.webp" alt="" width="1000" height="700" fetchpriority="high" />
+    <div class="container">
+      <span class="eyebrow">03 Â· Property &amp; partnerships</span>
+      <h1>Clear title. Fair terms. Land that gets used.</h1>
+      <p class="hero-sub">
+        GB GROUP connects landowners with credible developers and buyers across Jharkhand and West
+        Bengal â€” with verification, valuation and joint-venture structuring handled before any deal
+        moves forward.
       </p>
-    </div>
-
-    <!-- Visual Banner / Intro Card -->
-    <div class="card service-hero-card">
-      <div class="grid-2">
-        <div class="service-hero-text">
-          <span class="badge" style="margin-bottom: 0.75rem;">Verified Titles &bull; Fair Partnerships</span>
-          <h2>Clear Title Land Deals &amp; Joint Ventures</h2>
-          <p>
-            Real estate ventures in eastern India require thorough on-ground due diligence, revenue-sharing precision, and authentic local network. <strong>GB Group</strong> connects reputable landowners with experienced builders, corporations, and investors across <strong>Jharkhand</strong> and <strong>West Bengal</strong>.
-          </p>
-          <div class="hero-key-points">
-            <div class="point-item">
-              <strong>Land Buying &amp; Selling:</strong> Complete verification of deed chains, mutation, and government clearances.
-            </div>
-            <div class="point-item">
-              <strong>Joint Venture (JV) Collaboration:</strong> Fair ratio agreements (sharing of constructed area or revenue).
-            </div>
-          </div>
-        </div>
-        <div class="service-hero-img-box">
-          <img src="/images/land.svg" alt="GB Group Land Sales and Joint Work" class="service-img" />
-        </div>
+      <div class="hero-actions">
+        <a href="/land-joint-venture" class="btn btn-primary btn-lg">Browse the portfolio</a>
+        <a href="#land-enquiry" class="btn btn-whatsapp btn-lg">List your land</a>
       </div>
     </div>
+  </section>
 
-    <!-- The Two Core Operations: Land Sales + Joint Work -->
-    <div class="grid-2" style="margin-top: 3rem;">
-      <div class="card operation-card">
-        <div class="operation-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-            <polyline points="2 17 12 22 22 17"></polyline>
-            <polyline points="2 12 12 17 22 12"></polyline>
-          </svg>
-        </div>
-        <h3>Land Buying &amp; Selling Services</h3>
-        <p>
-          We assist both buyers and sellers with end-to-end procedural transparency:
-        </p>
-        <ul class="detail-list">
-          <li><strong>Title &amp; Deed Verification:</strong> 30-year deed search, verification of legal ownership, and non-encumbrance certificates.</li>
-          <li><strong>Zoning &amp; Land Classification:</strong> Clarifying commercial, residential, industrial, and agricultural classification.</li>
-          <li><strong>Fair Market Valuation:</strong> Accurate guidance on prevailing circle rates and realistic market prices.</li>
-          <li><strong>Dispute-Free Assurance:</strong> Thorough checks on possession status and boundary demarcation before deal closure.</li>
-        </ul>
+  <div class="container"><Breadcrumbs items={crumbs} /></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section--head">
+        <span class="eyebrow">Two ways we work</span>
+        <h2>Buying and selling, or building together.</h2>
       </div>
-
-      <div class="card operation-card">
-        <div class="operation-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-          </svg>
+      <div class="feature-row">
+        <div class="feature-media" data-reveal>
+          <figure class="media-frame wide"><img src="/images/land-residential.webp" alt="Residential property representing land sales" loading="lazy" decoding="async" width="1000" height="700" /><figcaption class="media-badge">Verified plot sales</figcaption></figure>
         </div>
-        <h3>Joint Venture &amp; Joint Work (JV)</h3>
-        <p>
-          Unlocking the true potential of prime land parcels through builder collaboration:
-        </p>
-        <ul class="detail-list">
-          <li><strong>Matching Landowners with Credible Builders:</strong> Partnering with developers possessing proven construction track records.</li>
-          <li><strong>Transparent Joint Venture Agreements:</strong> Drafting airtight contracts with clear development timelines, sharing ratios, and security deposits.</li>
-          <li><strong>Commercial &amp; Residential Projects:</strong> IT towers, residential apartment blocks, shopping malls, and logistics warehouses.</li>
-          <li><strong>Project Monitoring:</strong> Ensuring milestone compliance from sanctioned plans to completion certificates.</li>
-        </ul>
+        <div class="feature-copy" data-reveal>
+          <span class="eyebrow">Land sales</span>
+          <h2>Know exactly what you are buying.</h2>
+          <ul class="check-list">
+            <li>30-year deed search and ownership verification</li>
+            <li>Encumbrance, mutation and classification checks</li>
+            <li>Circle-rate and fair-market valuation guidance</li>
+            <li>Boundary demarcation and possession status review</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-row reverse">
+        <div class="feature-copy" data-reveal>
+          <span class="eyebrow">Joint ventures</span>
+          <h2>Structure the partnership before the project starts.</h2>
+          <ul class="check-list">
+            <li>Landowners matched with developers with proven track records</li>
+            <li>Agreements covering sharing ratio, deposits and timelines</li>
+            <li>Commercial, residential, IT and logistics project formats</li>
+            <li>Milestone monitoring from sanction to completion</li>
+          </ul>
+        </div>
+        <div class="feature-media" data-reveal>
+          <figure class="media-frame wide"><img src="/images/land-industrial.webp" alt="Industrial construction activity" loading="lazy" decoding="async" width="1000" height="700" /><figcaption class="media-badge">Joint development</figcaption></figure>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- LOCATION-WISE LISTING LAYOUT (Area, Size, Purpose) -->
-    <div style="margin-top: 3.5rem;">
-      <div class="section-header">
-        <span class="section-subtitle">Active Portfolio</span>
-        <h2 class="section-title">Location-Wise Land &amp; JV Opportunities</h2>
-        <p class="section-desc">
-          Browse verified land plots and joint venture projects classified by <strong>Area</strong>, <strong>Size</strong>, and <strong>Purpose</strong> across Jharkhand and West Bengal.
-        </p>
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section--head">
+        <span class="eyebrow">The process</span>
+        <h2>From first call to registered handover.</h2>
       </div>
+      <div class="steps five">
+        <div class="step" data-reveal><h3>Enquire</h3><p>Location, size, purpose and your preferred deal structure.</p></div>
+        <div class="step" data-reveal><h3>Verify</h3><p>Title, deed chain, encumbrance and land classification.</p></div>
+        <div class="step" data-reveal><h3>Structure</h3><p>Sale, lease or JV ratio with a transparent commercial model.</p></div>
+        <div class="step" data-reveal><h3>Agree</h3><p>Documented terms, security and delivery milestones.</p></div>
+        <div class="step" data-reveal><h3>Handover</h3><p>Registration support and possession, or project monitoring.</p></div>
+      </div>
+    </div>
+  </section>
 
-      <div class="listing-table-container">
-        <table class="listing-table">
-          <thead>
-            <tr>
-              <th>Area / Location</th>
-              <th>Size</th>
-              <th>Purpose</th>
-              <th>Deal Structure</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {listings.map((item) => (
-              <tr>
-                <td><strong>{item.area}</strong></td>
-                <td>{item.size}</td>
-                <td>{item.purpose}</td>
-                <td><span class="badge">{item.type}</span></td>
-                <td>
+  <section class="section">
+    <div class="container">
+      <div class="section--head">
+        <span class="eyebrow">A look at the portfolio</span>
+        <h2>Three opportunities currently on our desk.</h2>
+        <p class="lead">Each listing has a dedicated WhatsApp enquiry. The full portfolio is on the <a href="/land-joint-venture">property listings page</a>.</p>
+      </div>
+      <div class="property-grid">
+        {
+          featured.map((item) => (
+            <article class="property-card" data-reveal>
+              <div class="property-media">
+                <img src={item.image} alt={`Representative image for ${item.area}`} loading="lazy" decoding="async" width="900" height="600" />
+                <span class="property-id">{item.id}</span>
+              </div>
+              <div class="property-body">
+                <span class="property-location">{item.location}</span>
+                <h3>{item.area}</h3>
+                <div class="property-meta">
+                  <div><span>Size</span><strong>{item.size}</strong></div>
+                  <div><span>Purpose</span><strong>{item.purpose}</strong></div>
+                </div>
+                <p>{item.detail}</p>
+                <div class="property-foot">
+                  <span class="deal">{item.type}</span>
                   <a
-                    href={`https://wa.me/917439786518?text=${encodeURIComponent(`Hello GB Group, I am interested in Land Listing: ${item.area} (${item.size}) for ${item.purpose}.`)}`}
+                    class="btn btn-whatsapp btn-sm"
+                    href={waLink(`Hello GB GROUP, I am interested in ${item.id} â€” ${item.area} (${item.size}).`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="btn btn-whatsapp btn-sm"
+                    data-track="whatsapp"
+                    data-track-label={`Land service ${item.id}`}
                   >
                     Enquire
                   </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </article>
+          ))
+        }
       </div>
-
-      <div style="text-align: center; margin-top: 1.5rem;">
-        <a href="/land-joint-venture" class="btn btn-outline">
-          View Dedicated Land &amp; Joint Venture Page &rarr;
-        </a>
+      <div class="hero-actions" style="margin-top:2rem">
+        <a href="/land-joint-venture" class="btn btn-primary">See all 7 listings <span class="arrow" aria-hidden="true">â†’</span></a>
       </div>
     </div>
+  </section>
 
-    <!-- Direct Enquiry Section -->
-    <div style="margin-top: 4rem;" id="land-enquiry">
-      <div class="section-header">
-        <span class="section-subtitle">Land Deals &amp; Joint Ventures</span>
-        <h2 class="section-title">Enquire for Land Sales or Joint Work</h2>
-        <p class="section-desc">
-          Are you a landowner interested in a JV, or an investor seeking prime land in Jharkhand / West Bengal? Contact CEO Mohit Mallar.
-        </p>
-      </div>
+  <section class="section section--tint" id="land-enquiry">
+    <div class="container">
       <EnquiryForm
-        title="Land & Joint Venture Enquiry"
-        subtitle="Mention your location, approximate area/size, and whether you are buying, selling, or seeking JV"
-        preselectedService="Land Sales & Joint Work"
-        isFixedService={true}
-        formId="landEnquiryForm"
+        id="landForm"
+        title="List your land or find a partner"
+        intro="Include the location, approximate size and whether you are buying, selling or looking for a joint venture."
+        eyebrow="Land &amp; joint ventures"
+        service="Land Sales & Joint Work"
+        source="land"
       />
     </div>
-  </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section--head"><span class="eyebrow">Good to know</span><h2>Land &amp; JV questions</h2></div>
+      <FAQ items={faqs.land} />
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-  .breadcrumb {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .breadcrumb a {
-    color: var(--color-primary);
-  }
-
-  .service-hero-card {
-    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
-    border: 1px solid #bfdbfe;
-    padding: 2.5rem;
-  }
-
-  .service-hero-text h2 {
-    font-size: 1.6rem;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .service-hero-text p {
-    color: #475569;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-key-points {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .point-item {
-    font-size: 0.925rem;
-    color: #334155;
-    background: #ffffff;
-    padding: 0.65rem 1rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-  }
-
-  .point-item strong {
-    color: var(--color-primary-dark);
-  }
-
-  .service-hero-img-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .service-img {
-    max-height: 240px;
-    width: 100%;
-    object-fit: contain;
-  }
-
-  .operation-card {
-    border-top: 4px solid var(--color-primary);
-  }
-
-  .operation-icon {
-    width: 48px;
-    height: 48px;
-    background-color: var(--color-primary-surface);
-    color: var(--color-primary);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-
-  .operation-card h3 {
-    font-size: 1.25rem;
-    color: var(--color-primary);
-    margin-bottom: 0.75rem;
-  }
-
-  .operation-card p {
-    font-size: 0.95rem;
-    color: #475569;
-    margin-bottom: 1rem;
-  }
-
-  .detail-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    font-size: 0.9rem;
-  }
-
-  .detail-list li {
-    padding-left: 1.25rem;
-    position: relative;
-    color: #334155;
-    line-height: 1.5;
-  }
-
-  .detail-list li::before {
-    content: "✓";
-    color: var(--color-accent);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
-  .detail-list strong {
-    color: var(--color-primary-dark);
-  }
-</style>

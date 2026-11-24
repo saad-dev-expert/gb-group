@@ -1,228 +1,117 @@
 ---
+import { site, services } from "../config/site";
+
 interface Props {
+  id?: string;
   title?: string;
-  subtitle?: string;
-  preselectedService?: string;
-  isFixedService?: boolean;
-  formId?: string;
+  intro?: string;
+  service?: string;
+  source?: string;
+  eyebrow?: string;
 }
 
 const {
-  title = "Quick Enquiry / Contact GB Group",
-  subtitle = "Directly connects you to our CEO Mohit Mallar via WhatsApp & Email",
-  preselectedService = "Transport & Export",
-  isFixedService = false,
-  formId = "gbEnquiryForm",
+  id = "enquiry",
+  title = "Tell us what you need",
+  intro = "Share a few details and our team will respond directly on WhatsApp or email.",
+  service = "",
+  source = "website",
+  eyebrow = "Enquiry",
 } = Astro.props;
-
-const services = [
-  "Transport & Export",
-  "Education Consultant & Placement",
-  "Land Sales & Joint Work",
-  "Advertisement & Marketing"
-];
 ---
 
-<div class="enquiry-card" id={formId + "-container"}>
-  <div class="form-header">
-    <h3 class="form-title">{title}</h3>
-    <p class="form-desc">{subtitle}</p>
+<section class="enquiry-panel" data-enquiry-panel aria-labelledby={`${id}-title`}>
+  <div class="enquiry-intro">
+    <span class="eyebrow">{eyebrow}</span>
+    <h2 id={`${id}-title`}>{title}</h2>
+    <p>{intro}</p>
+    <div class="enquiry-direct">
+      <span>Prefer to talk now?</span>
+      <a href={`tel:${site.phone}`} data-track="call" data-track-label="Enquiry call">{site.phoneDisplay}</a>
+      <a
+        href={`https://wa.me/${site.whatsappNumber}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track="whatsapp"
+        data-track-label="Enquiry WhatsApp"
+      >
+        WhatsApp
+      </a>
+    </div>
   </div>
 
-  <form id={formId} class="gb-form" novalidate>
-    <!-- Full Name -->
-    <div class="form-group">
-      <label for={formId + "-name"} class="form-label">
-        Your Full Name <span class="required">*</span>
+  <div class="enquiry-form-wrap">
+    <form
+      id={id}
+      class="enquiry-form"
+      data-enquiry-form
+      data-endpoint={site.leadEndpoint}
+      data-service={service}
+      data-source={source}
+      novalidate
+    >
+      <div class="field-row">
+        <div class="field">
+          <label for={`${id}-name`}>Full name <span aria-hidden="true">*</span></label>
+          <input id={`${id}-name`} name="name" type="text" autocomplete="name" placeholder="Your name" required aria-describedby={`${id}-name-error`} />
+          <span class="field-error" data-error-for="name" id={`${id}-name-error`} hidden></span>
+        </div>
+        <div class="field">
+          <label for={`${id}-phone`}>Mobile number <span aria-hidden="true">*</span></label>
+          <input id={`${id}-phone`} name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile number" maxlength="15" required aria-describedby={`${id}-phone-error`} />
+          <span class="field-error" data-error-for="phone" id={`${id}-phone-error`} hidden></span>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for={`${id}-email`}>Email <span class="optional">(optional)</span></label>
+          <input id={`${id}-email`} name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby={`${id}-email-error`} />
+          <span class="field-error" data-error-for="email" id={`${id}-email-error`} hidden></span>
+        </div>
+        <div class="field">
+          <label for={`${id}-service`}>Service</label>
+          {
+            service ? (
+              <input id={`${id}-service`} name="service" type="text" value={service} readonly />
+            ) : (
+              <select id={`${id}-service`} name="service">
+                {services.map((item) => <option value={item.title}>{item.title}</option>)}
+              </select>
+            )
+          }
+        </div>
+      </div>
+
+      <div class="field">
+        <label for={`${id}-message`}>Your requirement <span class="optional">(optional)</span></label>
+        <textarea id={`${id}-message`} name="message" rows="3" placeholder="Location, quantity, timeline or anything we should know"></textarea>
+      </div>
+
+      <label class="consent">
+        <input name="consent" type="checkbox" aria-describedby={`${id}-consent-error`} />
+        <span>I agree to be contacted about this enquiry. See the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</span>
       </label>
-      <input
-        type="text"
-        id={formId + "-name"}
-        name="name"
-        class="form-control"
-        placeholder="e.g. Ramesh Kumar"
-        required
-      />
-      <span class="form-error" id={formId + "-name-error"}>Please enter your full name.</span>
+      <span class="field-error" data-error-for="consent" id={`${id}-consent-error`} hidden></span>
+
+      <div class="enquiry-actions">
+        <button class="btn btn-whatsapp btn-lg" type="submit">Send enquiry</button>
+        <a class="btn btn-ghost btn-lg" data-email-open href={`mailto:${site.email}`} data-track="email" data-track-label="Enquiry email fallback">
+          Use email instead
+        </a>
+      </div>
+      <p class="form-note">By submitting, your details are used only to respond to this enquiry.</p>
+    </form>
+
+    <div class="form-success" data-form-success hidden>
+      <div class="success-icon" aria-hidden="true">✓</div>
+      <h3>Enquiry received</h3>
+      <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
+      <a class="btn btn-whatsapp" data-wa-open href={`https://wa.me/${site.whatsappNumber}`} target="_blank" rel="noopener noreferrer">
+        Open WhatsApp with your message
+      </a>
+      <a class="btn btn-ghost" data-email-open href={`mailto:${site.email}`}>Open email instead</a>
+      <button class="text-button" type="button" data-form-reset>Edit my details</button>
     </div>
-
-    <!-- Phone Number -->
-    <div class="form-group">
-      <label for={formId + "-phone"} class="form-label">
-        Phone Number (10 Digits) <span class="required">*</span>
-      </label>
-      <input
-        type="tel"
-        id={formId + "-phone"}
-        name="phone"
-        class="form-control"
-        placeholder="e.g. 7439786518"
-        pattern="[0-9]{10}"
-        maxlength="10"
-        required
-      />
-      <span class="form-error" id={formId + "-phone-error"}>Please enter a valid 10-digit mobile number.</span>
-    </div>
-
-    <!-- Service Selection -->
-    <div class="form-group">
-      <label for={formId + "-service"} class="form-label">
-        Choose Service <span class="required">*</span>
-      </label>
-      {isFixedService ? (
-        <input
-          type="text"
-          id={formId + "-service"}
-          name="service"
-          class="form-control"
-          value={preselectedService}
-          readonly
-        />
-      ) : (
-        <select id={formId + "-service"} name="service" class="form-control" required>
-          {services.map((srv) => (
-            <option value={srv} selected={srv === preselectedService}>{srv}</option>
-          ))}
-        </select>
-      )}
-    </div>
-
-    <!-- Message -->
-    <div class="form-group">
-      <label for={formId + "-message"} class="form-label">
-        Your Message / Requirements
-      </label>
-      <textarea
-        id={formId + "-message"}
-        name="message"
-        class="form-control"
-        rows="3"
-        placeholder="Briefly describe what you require in Jharkhand or West Bengal..."
-      ></textarea>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="form-actions">
-      <button type="submit" class="btn btn-whatsapp btn-lg submit-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.26-1.5-1.4-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/>
-        </svg>
-        Send via WhatsApp (74397 86518)
-      </button>
-
-      <button type="button" id={formId + "-email-btn"} class="btn btn-outline btn-lg email-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-          <polyline points="22,6 12,13 2,6"></polyline>
-        </svg>
-        Send via Email (ceo@gbgroup.co.in)
-      </button>
-    </div>
-  </form>
-</div>
-
-<style>
-  .enquiry-card {
-    background: #ffffff;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    box-shadow: var(--shadow-md);
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  .form-header {
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-
-  .form-title {
-    color: var(--color-primary);
-    font-size: 1.5rem;
-    margin-bottom: 0.35rem;
-  }
-
-  .form-desc {
-    color: var(--color-text-muted);
-    font-size: 0.925rem;
-  }
-
-  .form-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-  }
-
-  .submit-btn, .email-btn {
-    width: 100%;
-  }
-</style>
-
-<script define:vars={{ formId }}>
-  const form = document.getElementById(formId);
-  const nameInput = document.getElementById(formId + '-name');
-  const phoneInput = document.getElementById(formId + '-phone');
-  const serviceInput = document.getElementById(formId + '-service');
-  const messageInput = document.getElementById(formId + '-message');
-  const emailBtn = document.getElementById(formId + '-email-btn');
-
-  const nameError = document.getElementById(formId + '-name-error');
-  const phoneError = document.getElementById(formId + '-phone-error');
-
-  function validate() {
-    let isValid = true;
-    const nameVal = nameInput ? nameInput.value.trim() : '';
-    const phoneVal = phoneInput ? phoneInput.value.trim().replace(/\D/g, '') : '';
-
-    if (!nameVal) {
-      if (nameError) nameError.classList.add('visible');
-      if (nameInput) nameInput.focus();
-      isValid = false;
-    } else {
-      if (nameError) nameError.classList.remove('visible');
-    }
-
-    if (!phoneVal || phoneVal.length !== 10) {
-      if (phoneError) phoneError.classList.add('visible');
-      if (isValid && phoneInput) phoneInput.focus();
-      isValid = false;
-    } else {
-      if (phoneError) phoneError.classList.remove('visible');
-    }
-
-    return { isValid, nameVal, phoneVal };
-  }
-
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const { isValid, nameVal, phoneVal } = validate();
-      if (!isValid) return;
-
-      const serviceVal = serviceInput ? serviceInput.value : '';
-      const messageVal = messageInput ? messageInput.value.trim() : '';
-
-      const waText = `Hello GB Group, I am ${nameVal}. Phone: ${phoneVal}. Service: ${serviceVal}. Message: ${messageVal || 'I would like to enquire about your services.'}`;
-      const waUrl = `https://wa.me/917439786518?text=${encodeURIComponent(waText)}`;
-
-      window.open(waUrl, '_blank');
-    });
-  }
-
-  if (emailBtn) {
-    emailBtn.addEventListener('click', () => {
-      const { isValid, nameVal, phoneVal } = validate();
-      if (!isValid) return;
-
-      const serviceVal = serviceInput ? serviceInput.value : '';
-      const messageVal = messageInput ? messageInput.value.trim() : '';
-
-      const subject = `Enquiry from ${nameVal} - ${serviceVal} | GB Group`;
-      const body = `Hello GB Group,\n\nI am ${nameVal}.\nPhone: ${phoneVal}\nService: ${serviceVal}\n\nMessage:\n${messageVal || 'Please connect with me.'}\n\nThank you.`;
-
-      window.location.href = `mailto:ceo@gbgroup.co.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    });
-  }
-</script>
+  </div>
+</section>

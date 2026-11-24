@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "Page not found | GB GROUP";
+const pageDescription = "The page you were looking for could not be found on the GB GROUP website.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} canonicalPath="/404" noIndex={true}>
+  <section class="not-found container">
+    <div class="code" aria-hidden="true">404</div>
+    <span class="eyebrow">GB GROUP</span>
+    <h1>That page isn't here.</h1>
+    <p>The link may have changed. Start again from the homepage, or explore our services and listings.</p>
+    <div class="hero-actions" style="justify-content:center">
+      <a href="/" class="btn btn-primary btn-lg">Go to homepage</a>
+      <a href="/services" class="btn btn-ghost btn-lg">View services</a>
+      <a href="/contact" class="btn btn-ghost btn-lg">Contact us</a>
+    </div>
+  </section>
+</BaseLayout>

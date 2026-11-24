@@ -1,289 +1,75 @@
 ---
-// GB Group Footer Component
-const currentYear = new Date().getFullYear();
+import { site, services } from "../config/site";
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="container footer-content">
-    <div class="footer-grid">
-      <!-- Col 1: Brand & Overview -->
-      <div class="footer-col brand-col">
-        <div class="footer-brand">
-          <img src="/logo.png" alt="GB Group" width="56" height="56" class="footer-logo" />
-          <div class="brand-text">
-            <span class="brand-name">GB GROUP</span>
-            <span class="brand-sub">Consultancy / Agency</span>
-          </div>
-        </div>
-        <p class="brand-desc">
-          Ek Chhat Ke Neeche 4 Badi Services. Professional consultancy and trusted execution across <strong>Jharkhand</strong> and <strong>West Bengal</strong>.
-        </p>
-        <div class="served-regions">
-          <span class="region-pill">Jharkhand</span>
-          <span class="region-pill">West Bengal</span>
-        </div>
-      </div>
-
-      <!-- Col 2: The 4 Services -->
-      <div class="footer-col">
-        <h4 class="footer-heading">Our 4 Services</h4>
-        <ul class="footer-links">
-          <li>
-            <a href="/services/transport-export">Transport &amp; Export</a>
-          </li>
-          <li>
-            <a href="/services/education-placement">Education Consultant &amp; Placement</a>
-          </li>
-          <li>
-            <a href="/services/land-joint-work">Land Sales &amp; Joint Work</a>
-          </li>
-          <li>
-            <a href="/services/advertising-marketing">Advertisement &amp; Marketing</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Navigation -->
-      <div class="footer-col">
-        <h4 class="footer-heading">Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/services">All Services</a></li>
-          <li><a href="/land-joint-venture">Land &amp; Joint Venture Listings</a></li>
-          <li><a href="/contact">Contact Us</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 4: Official Contact Details -->
-      <div class="footer-col contact-col">
-        <h4 class="footer-heading">Direct Contact</h4>
-        <ul class="contact-details-list">
-          <li>
-            <span class="contact-label">CEO:</span>
-            <strong>Mohit Mallar</strong>
-          </li>
-          <li>
-            <span class="contact-label">Mobile / Call:</span>
-            <a href="tel:+917439786518" class="contact-link">74397 86518</a>
-          </li>
-          <li>
-            <span class="contact-label">WhatsApp:</span>
-            <a href="https://wa.me/917439786518" target="_blank" rel="noopener noreferrer" class="contact-link whatsapp-link">
-              +91 74397 86518
-            </a>
-          </li>
-          <li>
-            <span class="contact-label">Email:</span>
-            <a href="mailto:ceo@gbgroup.co.in" class="contact-link">ceo@gbgroup.co.in</a>
-          </li>
-          <li>
-            <span class="contact-label">Website:</span>
-            <a href="https://www.gbgroup.in" class="contact-link">www.gbgroup.in</a>
-          </li>
-          <li>
-            <span class="contact-label">Office Address:</span>
-            <span>GC 50, Block Sector V, Kolkata, West Bengal – 700064</span>
-          </li>
-        </ul>
+  <div class="container footer-grid">
+    <div class="footer-brand-col">
+      <a href="/" class="brand brand--footer">
+        <img src="/logo.png" alt="" width="42" height="42" class="brand-mark" />
+        <span class="brand-wordmark"><strong>{site.brand}</strong></span>
+      </a>
+      <p>Four essential services. One accountable team across Jharkhand and West Bengal.</p>
+      <div class="footer-regions">
+        <span>Jharkhand</span><span>West Bengal</span>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="footer-bottom">
-      <div class="bottom-inner">
-        <p class="copyright">
-          &copy; {currentYear} <strong>GB Group</strong>. All rights reserved.
-        </p>
-        <p class="hosting-note">
-          Official Domain: <a href="https://www.gbgroup.in">www.gbgroup.in</a> &bull; Kolkata &bull; Ranchi &bull; Jharkhand &bull; West Bengal
-        </p>
-      </div>
+    <div>
+      <h2 class="footer-heading">Services</h2>
+      <ul class="footer-links">
+        {
+          services.map((service) => (
+            <li>
+              <a href={service.path}>{service.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="footer-heading">Explore</h2>
+      <ul class="footer-links">
+        <li><a href="/about">About GB GROUP</a></li>
+        <li><a href="/services">All services</a></li>
+        <li><a href="/land-joint-venture">Property portfolio</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="footer-heading">Speak to us</h2>
+      <ul class="footer-contact">
+        <li><span>CEO</span><strong>{site.ceo}</strong></li>
+        <li>
+          <span>Call</span>
+          <a href={`tel:${site.phone}`} data-track="call" data-track-label="Footer call">{site.phoneDisplay}</a>
+        </li>
+        <li>
+          <span>WhatsApp</span>
+          <a
+            href={`https://wa.me/${site.whatsappNumber}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="whatsapp"
+            data-track-label="Footer WhatsApp"
+          >
+            +91 {site.phoneDisplay}
+          </a>
+        </li>
+        <li><span>Email</span><a href={`mailto:${site.email}`} data-track="email">{site.email}</a></li>
+      </ul>
     </div>
   </div>
+
+  <div class="container footer-bottom">
+    <p>© {year} {site.brand}. All rights reserved.</p>
+    <nav aria-label="Legal">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="/contact">Office: {site.address.locality}, {site.address.region}</a>
+    </nav>
+  </div>
 </footer>
-
-<style>
-  .site-footer {
-    background-color: #0d1e44;
-    color: #e2e8f0;
-    border-top: 4px solid var(--color-primary-light);
-    margin-top: auto;
-    font-size: 0.95rem;
-  }
-
-  .footer-content {
-    padding-top: 3.5rem;
-    padding-bottom: 2rem;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    margin-bottom: 3rem;
-  }
-
-  @media (min-width: 640px) {
-    .footer-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .footer-grid {
-      grid-template-columns: 1.4fr 1fr 0.9fr 1.3fr;
-    }
-  }
-
-  .footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    margin-bottom: 1rem;
-  }
-
-  .footer-logo {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 3px;
-  }
-
-  .brand-name {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.01em;
-    display: block;
-  }
-
-  .brand-sub {
-    font-size: 0.78rem;
-    color: #94a3b8;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .brand-desc {
-    color: #94a3b8;
-    line-height: 1.5;
-    margin-bottom: 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  .brand-desc strong {
-    color: #ffffff;
-  }
-
-  .served-regions {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .region-pill {
-    background: rgba(2, 132, 199, 0.2);
-    border: 1px solid rgba(2, 132, 199, 0.4);
-    color: #38bdf8;
-    padding: 0.2rem 0.65rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-
-  .footer-heading {
-    color: #ffffff;
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 1.25rem;
-    position: relative;
-    padding-bottom: 0.5rem;
-  }
-
-  .footer-heading::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 32px;
-    height: 2px;
-    background-color: var(--color-accent);
-  }
-
-  .footer-links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-  }
-
-  .footer-links a {
-    color: #cbd5e1;
-    transition: color 0.2s ease, transform 0.2s ease;
-    display: inline-block;
-  }
-
-  .footer-links a:hover {
-    color: #ffffff;
-    transform: translateX(3px);
-  }
-
-  .contact-details-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    font-size: 0.9rem;
-  }
-
-  .contact-label {
-    display: block;
-    color: #94a3b8;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 0.1rem;
-  }
-
-  .contact-link {
-    color: #e2e8f0;
-  }
-
-  .contact-link:hover {
-    color: #38bdf8;
-  }
-
-  .whatsapp-link {
-    color: #4ade80;
-    font-weight: 600;
-  }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 1.5rem;
-  }
-
-  .bottom-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-    font-size: 0.85rem;
-    color: #94a3b8;
-  }
-
-  .bottom-inner a {
-    color: #cbd5e1;
-  }
-
-  @media (min-width: 768px) {
-    .bottom-inner {
-      flex-direction: row;
-      justify-content: space-between;
-      text-align: left;
-    }
-  }
-</style>

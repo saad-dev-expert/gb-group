@@ -1,244 +1,100 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import EnquiryForm from "../components/EnquiryForm.astro";
+import { site, waLink } from "../config/site";
 
-const pageTitle = "About Us | GB Group";
-const pageDescription = "Learn about GB Group - premier multi-sector consultancy and agency operating across Jharkhand and West Bengal under the leadership of CEO Mohit Mallar.";
+const pageTitle = "About GB GROUP | Multi-Service Consultancy in Eastern India";
+const pageDescription =
+  "Meet GB GROUP â€” a Jharkhand and West Bengal consultancy delivering transport, education, land and marketing services with direct leadership involvement.";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} canonicalPath="/about">
-  <div class="container section">
-    <div class="section-header">
-      <span class="section-subtitle">Who We Are</span>
-      <h1 class="section-title">About GB Group</h1>
-      <p class="section-desc">
-        A dedicated consultancy and agency bridging opportunities and delivering results in Jharkhand &amp; West Bengal.
+  <section class="split-hero container">
+    <div class="split-copy">
+      <span class="eyebrow">Who we are</span>
+      <h1>One group, four disciplines, one standard of work.</h1>
+      <p class="lead">
+        GB GROUP exists to make complex work simpler for businesses, landowners, students and
+        families across eastern India. Instead of coordinating separate brokers and agencies,
+        clients come to one team that stays accountable from first conversation to final delivery.
       </p>
-    </div>
-
-    <!-- Agency Overview -->
-    <div class="about-grid">
-      <div class="about-card card">
-        <h2>"Ek Chhat Ke Neeche 4 Badi Services"</h2>
-        <p>
-          <strong>GB Group</strong> was established to provide businesses, landowners, investors, and students with reliable, accountable, and transparent solutions across eastern India. Rather than navigating fragmented brokers and unverified intermediaries, GB Group brings four high-demand services into one professional agency.
-        </p>
-        <p>
-          We operate actively across both <strong>Jharkhand</strong> and <strong>West Bengal</strong>, leveraging deep on-ground networks, legal awareness, logistics coordination, and market connections to achieve superior outcomes for our clients.
-        </p>
-
-        <div class="values-grid">
-          <div class="value-item">
-            <h4>No Middlemen</h4>
-            <p>Direct communication with the agency and leadership for fast execution.</p>
-          </div>
-          <div class="value-item">
-            <h4>Legal &amp; Verified</h4>
-            <p>Every land parcel, export paper, and educational tie-up undergoes verification.</p>
-          </div>
-          <div class="value-item">
-            <h4>Regional Expertise</h4>
-            <p>Specialized understanding of business dynamics in Jharkhand and West Bengal.</p>
-          </div>
-          <div class="value-item">
-            <h4>Complete Accountability</h4>
-            <p>We stand by our commitments from consultation through delivery.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- CEO & Leadership Box -->
-      <div class="leadership-card card">
-        <div class="leadership-badge">
-          <span class="badge">Agency Leadership</span>
-        </div>
-        <div class="ceo-avatar-placeholder">
-          <img src="/logo.png" alt="GB Group" width="70" height="70" class="ceo-logo" />
-        </div>
-        <h3 class="ceo-name">Mohit Mallar</h3>
-        <p class="ceo-title">Chief Executive Officer (CEO), GB Group</p>
-        <p class="ceo-bio">
-          Mohit Mallar leads GB Group with a vision to make business operations, educational journeys, logistics, and real estate development effortless across Jharkhand and West Bengal. Under his leadership, GB Group upholds prompt communication, transparent terms, and customer-centric delivery.
-        </p>
-
-        <div class="ceo-contacts">
-          <a href="tel:+917439786518" class="btn btn-call btn-sm">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            Call: 74397 86518
-          </a>
-          <a href="https://wa.me/917439786518" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm">
-            WhatsApp Mohit Mallar
-          </a>
-          <a href="mailto:ceo@gbgroup.co.in" class="btn btn-outline btn-sm">
-            ceo@gbgroup.co.in
-          </a>
-        </div>
+      <p>
+        Our strength is local: we know the industrial corridors, the admission landscape, the land
+        records and the media routes of Jharkhand and West Bengal. That knowledge is backed by
+        documentation, clear communication and direct access to our leadership.
+      </p>
+      <div class="hero-actions">
+        <a href="/services" class="btn btn-primary btn-lg">See our services</a>
+        <a href="/contact" class="btn btn-ghost btn-lg">Contact GB GROUP</a>
       </div>
     </div>
+    <div class="split-media" data-reveal>
+      <figure class="media-frame">
+        <img src="/images/about-office.webp" alt="Modern office workspace representing the GB GROUP team environment" loading="lazy" decoding="async" width="1400" height="900" />
+        <figcaption class="media-badge">Working across eastern India</figcaption>
+      </figure>
+    </div>
+  </section>
 
-    <!-- What Makes GB Group Different -->
-    <div class="section-alt card agency-details-box" style="margin-top: 3rem; padding: 2.5rem;">
-      <h3 style="margin-bottom: 1.25rem; color: var(--color-primary);">Our Four Specialized Pillars</h3>
-      <div class="grid-2">
-        <div>
-          <h4 style="color: var(--color-primary-dark); margin-bottom: 0.4rem;">1. Transport &amp; Export</h4>
-          <p style="font-size: 0.95rem; color: #475569;">
-            Linking manufacturers and traders in Jharkhand to national markets and Haldia/Kolkata ports for seamless domestic movement and export documentation.
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section--head">
+        <span class="eyebrow">How we work</span>
+        <h2>Four commitments behind every service.</h2>
+      </div>
+      <div class="steps four">
+        <div class="step" data-reveal><h3>Direct access</h3><p>You speak with decision-makers, not a chain of intermediaries.</p></div>
+        <div class="step" data-reveal><h3>Verified process</h3><p>Titles, documents, institutions and partners are checked before we proceed.</p></div>
+        <div class="step" data-reveal><h3>Regional knowledge</h3><p>We work where the work actually happens â€” across two states and their industrial hubs.</p></div>
+        <div class="step" data-reveal><h3>Clear terms</h3><p>Scope, timelines and responsibilities are agreed upfront and kept visible.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-copy" data-reveal>
+          <span class="eyebrow">Leadership</span>
+          <h2>Straight answers from the top.</h2>
+          <p>
+            <strong>{site.ceo}</strong> leads GB GROUP with a focus on responsive communication and
+            practical outcomes. Clients reach our leadership directly for quotations, decisions and
+            escalation â€” not a ticket queue.
           </p>
+          <div class="hero-actions">
+            <a href={`tel:${site.phone}`} class="btn btn-primary" data-track="call" data-track-label="About call">Call {site.phoneDisplay}</a>
+            <a href={waLink()} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" data-track="whatsapp" data-track-label="About WhatsApp">WhatsApp</a>
+            <a href={`mailto:${site.email}`} class="btn btn-ghost" data-track="email">Email</a>
+          </div>
+          <div class="chip-row" style="margin-top:1.8rem">
+            <span class="chip">Jharkhand</span>
+            <span class="chip">West Bengal</span>
+            <span class="chip">Kolkata Â· Sector V</span>
+          </div>
         </div>
-        <div>
-          <h4 style="color: var(--color-primary-dark); margin-bottom: 0.4rem;">2. Education Consultant &amp; Placement</h4>
-          <p style="font-size: 0.95rem; color: #475569;">
-            Guiding students from school to campus and career. Admissions into accredited colleges, scholarship assistance, and direct placement opportunities.
-          </p>
-        </div>
-        <div>
-          <h4 style="color: var(--color-primary-dark); margin-bottom: 0.4rem;">3. Land Sales &amp; Joint Work</h4>
-          <p style="font-size: 0.95rem; color: #475569;">
-            Structuring fair, legally sound joint venture collaborations between landowners and real estate developers, alongside verified plot sales.
-          </p>
-        </div>
-        <div>
-          <h4 style="color: var(--color-primary-dark); margin-bottom: 0.4rem;">4. Advertisement &amp; Marketing</h4>
-          <p style="font-size: 0.95rem; color: #475569;">
-            Creating modern visibility for companies through targeted digital campaigns, high-traffic hoarding placements, and local promotional drives.
-          </p>
+        <div class="feature-media" data-reveal>
+          <figure class="media-frame">
+            <img src="/images/about-city.webp" alt="Skyline of Kolkata's Salt Lake Sector V business district" loading="lazy" decoding="async" width="1400" height="900" />
+            <figcaption class="media-badge">Our home base Â· Kolkata</figcaption>
+          </figure>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Contact Form Integration -->
-    <div style="margin-top: 4rem;">
-      <div class="section-header">
-        <span class="section-subtitle">Reach Out Today</span>
-        <h2 class="section-title">Connect with GB Group</h2>
-        <p class="section-desc">Have a question or proposal? Send us a message below.</p>
+  <section class="section">
+    <div class="container">
+      <div class="cta-band" data-reveal>
+        <div>
+          <span class="eyebrow">Work with us</span>
+          <h2>Let's discuss your requirement.</h2>
+          <p>One conversation is enough to find out whether GB GROUP is the right fit for your project.</p>
+        </div>
+        <div class="cta-actions">
+          <a href={waLink()} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg" data-track="whatsapp" data-track-label="About CTA WhatsApp">Chat on WhatsApp</a>
+          <a href="/contact" class="btn btn-outline btn-lg">Send an enquiry</a>
+        </div>
       </div>
-      <EnquiryForm
-        title="Direct Consultation Enquiry"
-        subtitle="Mohit Mallar (CEO) and our team will get in touch promptly."
-      />
     </div>
-  </div>
+  </section>
 </BaseLayout>
-
-<style>
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  @media (min-width: 992px) {
-    .about-grid {
-      grid-template-columns: 1.5fr 1fr;
-    }
-  }
-
-  .about-card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-  }
-
-  .about-card p {
-    font-size: 1rem;
-    color: #475569;
-    margin-bottom: 1.25rem;
-  }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-top: 2rem;
-  }
-
-  @media (min-width: 640px) {
-    .values-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .value-item {
-    background-color: var(--color-bg-alt);
-    padding: 1.25rem;
-    border-radius: var(--radius-md);
-    border-left: 3px solid var(--color-primary);
-  }
-
-  .value-item h4 {
-    margin-bottom: 0.25rem;
-    font-size: 1.05rem;
-  }
-
-  .value-item p {
-    font-size: 0.875rem;
-    margin-bottom: 0;
-    color: var(--color-text-muted);
-  }
-
-  .leadership-card {
-    text-align: center;
-    border-top: 4px solid var(--color-primary);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .leadership-badge {
-    margin-bottom: 1rem;
-  }
-
-  .ceo-avatar-placeholder {
-    width: 80px;
-    height: 80px;
-    background: #eff6ff;
-    border: 2px solid #bfdbfe;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-
-  .ceo-logo {
-    width: 56px;
-    height: 56px;
-    object-fit: contain;
-  }
-
-  .ceo-name {
-    font-size: 1.4rem;
-    margin-bottom: 0.15rem;
-  }
-
-  .ceo-title {
-    color: var(--color-accent);
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
-  }
-
-  .ceo-bio {
-    font-size: 0.925rem;
-    color: #475569;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .ceo-contacts {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    width: 100%;
-  }
-
-  .ceo-contacts .btn {
-    width: 100%;
-  }
-</style>

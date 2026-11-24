@@ -1,338 +1,150 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import EnquiryForm from "../../components/EnquiryForm.astro";
+import FAQ from "../../components/FAQ.astro";
+import { faqs, waLink } from "../../config/site";
+import { serviceSchema, faqSchema } from "../../lib/schema";
 
-const pageTitle = "Advertisement & Marketing | GB Group";
-const pageDescription = "GB Group Advertisement & Marketing services in Jharkhand and West Bengal. Professional business advertising, corporate branding, social media marketing, and local ground promotions.";
+const pageTitle = "Advertisement & Marketing in Jharkhand & West Bengal | GB GROUP";
+const pageDescription =
+  "GB GROUP delivers outdoor hoardings, print, digital campaigns, ground activation and brand identity for businesses across Jharkhand and West Bengal.";
+const crumbs = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Advertisement & Marketing" },
+];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} canonicalPath="/services/advertising-marketing">
-  <div class="container section">
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a> &gt; <a href="/services">Services</a> &gt; <span>Advertisement &amp; Marketing</span>
-    </nav>
-
-    <div class="section-header">
-      <span class="section-subtitle">Service 04 &bull; Growth &amp; Branding</span>
-      <h1 class="section-title">Advertisement &amp; Marketing in Jharkhand &amp; West Bengal</h1>
-      <p class="section-desc">
-        High-impact commercial advertising, strategic branding, digital marketing campaigns, and ground-level promotional drives tailored for regional market success.
-      </p>
-    </div>
-
-    <!-- Visual Banner / Intro Card -->
-    <div class="card service-hero-card">
-      <div class="grid-2">
-        <div class="service-hero-text">
-          <span class="badge" style="margin-bottom: 0.75rem;">Visibility &bull; Leads &bull; Reputation</span>
-          <h2>Grow Your Business Presence with GB Group Marketing</h2>
-          <p>
-            Whether you are launching a new enterprise or seeking greater market share across eastern India, <strong>GB Group</strong> delivers focused advertising and branding campaigns that connect directly with customers across <strong>Jharkhand</strong> and <strong>West Bengal</strong>.
-          </p>
-          <div class="hero-key-points">
-            <div class="point-item">
-              <strong>Integrated Marketing:</strong> Seamless combination of online digital reach and physical ground visibility.
-            </div>
-            <div class="point-item">
-              <strong>Measurable Results:</strong> Designed to generate real business inquiries, customer footfall, and recognized branding.
-            </div>
-          </div>
-        </div>
-        <div class="service-hero-img-box">
-          <img src="/images/marketing.svg" alt="GB Group Advertisement and Marketing" class="service-img" />
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 1: Which Kinds of Business It Is For -->
-    <div style="margin-top: 3.5rem;">
-      <div class="section-header">
-        <span class="section-subtitle">Target Sectors</span>
-        <h2 class="section-title">Which Kinds of Business It Is For</h2>
-        <p class="section-desc">
-          Our marketing and promotional services are strategically designed for diverse commercial entities operating in Jharkhand and West Bengal:
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/services/advertising-marketing"
+  accent="marketing"
+  breadcrumbs={crumbs}
+  schema={[
+    serviceSchema({
+      name: "Advertisement & Marketing",
+      description: pageDescription,
+      path: "/services/advertising-marketing",
+      image: "/images/hero-marketing.webp",
+    }),
+    faqSchema(faqs.marketing),
+  ]}
+>
+  <section class="editorial-hero">
+    <div class="container">
+      <div>
+        <span class="eyebrow">04 Â· Growth &amp; branding</span>
+        <h1>Visibility that turns into enquiries.</h1>
+        <p class="hero-sub">
+          GB GROUP plans and produces campaigns that work in the real market â€” high-traffic outdoor,
+          print that gets seen, digital that reaches the right postcode and teams on the ground.
         </p>
+        <div class="hero-actions">
+          <a href="#marketing-enquiry" class="btn btn-whatsapp btn-lg">Start a campaign</a>
+          <a href="#what-we-do" class="btn btn-outline btn-lg">See examples</a>
+        </div>
       </div>
+      <div class="editorial-media" aria-hidden="true">
+        <img src="/images/hero-marketing.webp" alt="" width="1800" height="950" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
 
-      <div class="grid-3">
-        <div class="card client-type-card">
-          <h4>Retailers &amp; Showrooms</h4>
-          <p>Jewellery stores, garment showrooms, electronics dealers, automobile dealerships, and multi-brand outlets seeking local customer footfall.</p>
+  <div class="container"><Breadcrumbs items={crumbs} /></div>
+
+  <section class="section" id="what-we-do">
+    <div class="container">
+      <div class="section--head">
+        <span class="eyebrow">What we produce</span>
+        <h2>From the hoarding to the hashtag.</h2>
+      </div>
+      <div class="image-grid">
+        <figure class="image-card" data-reveal><img src="/images/marketing-billboard.webp" alt="Large outdoor advertising billboard beside a road" loading="lazy" decoding="async" width="1000" height="700" /><figcaption>Outdoor &amp; hoardings</figcaption></figure>
+        <figure class="image-card" data-reveal><img src="/images/marketing-print.webp" alt="Posters and printed marketing material" loading="lazy" decoding="async" width="1000" height="700" /><figcaption>Posters, flyers &amp; print</figcaption></figure>
+        <figure class="image-card" data-reveal><img src="/images/marketing-digital.webp" alt="Digital campaign design on screens" loading="lazy" decoding="async" width="1000" height="700" /><figcaption>Social &amp; digital campaigns</figcaption></figure>
+        <figure class="image-card" data-reveal><img src="/images/marketing-event.webp" alt="Audience at a promotional event" loading="lazy" decoding="async" width="1000" height="700" /><figcaption>Events &amp; ground activation</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-copy" data-reveal>
+          <span class="eyebrow">Brand identity</span>
+          <h2>Look established everywhere customers meet you.</h2>
+          <p class="lead">Strategy, logo and style, company profiles, catalogues and signage developed as one consistent identity â€” not disconnected design files.</p>
+          <ul class="check-list">
+            <li>Positioning and message that fits the regional market</li>
+            <li>Brand style, print collateral and catalogues</li>
+            <li>Storefront and office signage</li>
+          </ul>
         </div>
-        <div class="card client-type-card">
-          <h4>Manufacturing &amp; Industrial Firms</h4>
-          <p>B2B manufacturers, steel &amp; fabrication companies, packaging units, and industrial suppliers looking for commercial orders.</p>
-        </div>
-        <div class="card client-type-card">
-          <h4>Colleges, Schools &amp; Institutes</h4>
-          <p>Educational institutions running admission campaigns, coaching centres, competitive exam academies, and skill development institutes.</p>
-        </div>
-        <div class="card client-type-card">
-          <h4>Real Estate &amp; Builders</h4>
-          <p>Property developers and builders launching residential apartments, commercial shopping complexes, or plot development projects.</p>
-        </div>
-        <div class="card client-type-card">
-          <h4>Healthcare, Hospitals &amp; Clinics</h4>
-          <p>Multi-speciality hospitals, diagnostic centres, dental clinics, and wellness centres building community trust and patient awareness.</p>
-        </div>
-        <div class="card client-type-card">
-          <h4>Local Startups &amp; Service Providers</h4>
-          <p>Emerging ventures, restaurants, event organizers, consultancies, and consumer service providers scaling their regional brand.</p>
+        <div class="feature-media" data-reveal>
+          <figure class="media-frame wide"><img src="/images/marketing-brand.webp" alt="Branding workshop with a whiteboard" loading="lazy" decoding="async" width="1000" height="700" /><figcaption class="media-badge">Brand thinking</figcaption></figure>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Section 2: What Is Included -->
-    <div style="margin-top: 4rem;">
-      <div class="section-header">
-        <span class="section-subtitle">Service Inclusions</span>
-        <h2 class="section-title">What Is Included in Our Marketing Services</h2>
-        <p class="section-desc">
-          From creative graphic design to on-ground execution and digital campaigns, we provide complete marketing solutions:
-        </p>
+  <section class="section">
+    <div class="container">
+      <div class="section--head">
+        <span class="eyebrow">Campaign rhythm</span>
+        <h2>Brief, plan, produce, launch.</h2>
       </div>
+      <div class="steps four">
+        <div class="step" data-reveal><h3>Brief</h3><p>Business goal, audience, target cities and budget.</p></div>
+        <div class="step" data-reveal><h3>Plan</h3><p>Channel mix, creative direction and placement plan.</p></div>
+        <div class="step" data-reveal><h3>Produce</h3><p>Design, print, digital assets and on-ground material.</p></div>
+        <div class="step" data-reveal><h3>Launch &amp; review</h3><p>Execution across locations with enquiries tracked and reviewed.</p></div>
+      </div>
+      <div style="margin-top:2.4rem" class="chip-row">
+        <span class="chip">Retail &amp; showrooms</span>
+        <span class="chip">Manufacturing</span>
+        <span class="chip">Colleges &amp; institutes</span>
+        <span class="chip">Real estate</span>
+        <span class="chip">Healthcare</span>
+        <span class="chip">Startups &amp; services</span>
+      </div>
+    </div>
+  </section>
 
-      <div class="grid-2">
-        <!-- Posters & Print Advertising -->
-        <div class="card inclusion-card">
-          <div class="inc-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-          </div>
-          <h3>1. Posters, Print &amp; Outdoor Display</h3>
-          <p>
-            High-visibility visual branding materials created and distributed for maximum public impact:
-          </p>
-          <ul class="detail-list">
-            <li><strong>Posters &amp; Banners:</strong> Eye-catching design and high-quality printing for storefronts, public boards, and event hubs.</li>
-            <li><strong>Flyers &amp; Pamphlet Inserts:</strong> Targeted distribution in high-density residential and commercial colonies.</li>
-            <li><strong>Standees &amp; Point-of-Sale (POS):</strong> Promotional stands for exhibitions, corporate offices, and retail stores.</li>
-            <li><strong>Hoardings &amp; Billboards:</strong> Strategic site selection and installation along prime arterial highways and city junctions.</li>
-          </ul>
+  <section class="section section--tint">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-media" data-reveal>
+          <figure class="media-frame wide"><img src="/images/marketing-team.webp" alt="Marketing team working together" loading="lazy" decoding="async" width="1000" height="700" /><figcaption class="media-badge">Campaign planning</figcaption></figure>
         </div>
-
-        <!-- Social Media & Digital Marketing -->
-        <div class="card inclusion-card">
-          <div class="inc-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="18" cy="5" r="3"></circle>
-              <circle cx="6" cy="12" r="3"></circle>
-              <circle cx="18" cy="19" r="3"></circle>
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-            </svg>
-          </div>
-          <h3>2. Social Media &amp; Digital Marketing</h3>
-          <p>
-            Connecting your brand with targeted digital audiences across smartphones and computers:
-          </p>
-          <ul class="detail-list">
-            <li><strong>Facebook &amp; Instagram Advertising:</strong> Geo-targeted ad campaigns in Ranchi, Jamshedpur, Kolkata, Howrah, and beyond.</li>
-            <li><strong>Content &amp; Reels Production:</strong> Engaging video snippets, product demonstrations, and customer testimonials.</li>
-            <li><strong>Google Search &amp; Maps Optimization:</strong> Getting your business found when local customers search for your services.</li>
-            <li><strong>WhatsApp Business Marketing:</strong> Structured broadcasts and automated customer inquiry handling.</li>
-          </ul>
-        </div>
-
-        <!-- Local Promotion & Ground Activation -->
-        <div class="card inclusion-card">
-          <div class="inc-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-          </div>
-          <h3>3. Local Promotion &amp; Ground Activation</h3>
-          <p>
-            Real on-ground presence that drives direct interaction with your target community:
-          </p>
-          <ul class="detail-list">
-            <li><strong>Canopy &amp; Kiosk Setups:</strong> Direct interaction booths at busy markets, residential complexes, and fairs.</li>
-            <li><strong>Roadshows &amp; Van Promotions:</strong> Audio announcements, mobile display vans, and festive marketing drives.</li>
-            <li><strong>Event Sponsorships:</strong> Local festival and sports event marketing for deep regional goodwill.</li>
-            <li><strong>Business Networking:</strong> Direct B2B introductions to corporate and dealer networks in eastern India.</li>
-          </ul>
-        </div>
-
-        <!-- Brand Identity & Creative Design -->
-        <div class="card inclusion-card">
-          <div class="inc-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-          </div>
-          <h3>4. Business Branding &amp; Corporate Identity</h3>
-          <p>
-            Building a credible and memorable brand image that commands trust in the marketplace:
-          </p>
-          <ul class="detail-list">
-            <li><strong>Brand Strategy:</strong> Defining your unique selling proposition (USP), tone of voice, and competitive edge.</li>
-            <li><strong>Logo &amp; Brand Style Guide:</strong> Consistent typography, color harmony, and professional collateral.</li>
-            <li><strong>Company Profiles &amp; Catalogues:</strong> High-quality brochures, product catalogues, and pitch decks.</li>
-            <li><strong>Signage &amp; Storefront Design:</strong> ACP boards, LED acrylic letters, and branded office signage.</li>
-          </ul>
+        <div class="feature-copy" data-reveal>
+          <span class="eyebrow">Regional execution</span>
+          <h2>One team across both states.</h2>
+          <p class="lead">Whether the brief is a city-wide outdoor drive or a multi-location admission campaign, we coordinate design, vendors and on-ground teams so the message stays consistent.</p>
+          <a href={waLink("Hello GB GROUP, I would like to discuss an advertising campaign in Jharkhand or West Bengal.")} target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-track="whatsapp" data-track-label="Marketing campaign help">Discuss a campaign</a>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Direct Enquiry Form Section -->
-    <div style="margin-top: 4rem;" id="marketing-enquiry">
-      <div class="section-header">
-        <span class="section-subtitle">Start Your Campaign</span>
-        <h2 class="section-title">Enquire for Advertisement &amp; Marketing</h2>
-        <p class="section-desc">
-          Tell us about your business, target audience, and growth targets. We will create a custom marketing plan for you.
-        </p>
-      </div>
+  <section class="section" id="marketing-enquiry">
+    <div class="container">
       <EnquiryForm
-        title="Marketing & Branding Enquiry"
-        subtitle="Specify your business type, target cities in Jharkhand / West Bengal, and promotional goals"
-        preselectedService="Advertisement & Marketing"
-        isFixedService={true}
-        formId="marketingEnquiryForm"
+        id="marketingForm"
+        title="Brief us on your campaign"
+        intro="Tell us your business type, target cities and what you want the campaign to achieve."
+        eyebrow="Advertisement &amp; marketing"
+        service="Advertisement & Marketing"
+        source="marketing"
       />
     </div>
-  </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section--head"><span class="eyebrow">Good to know</span><h2>Marketing questions</h2></div>
+      <FAQ items={faqs.marketing} />
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-  .breadcrumb {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .breadcrumb a {
-    color: var(--color-primary);
-  }
-
-  .service-hero-card {
-    background: linear-gradient(135deg, #fdf4ff 0%, #ffffff 100%);
-    border: 1px solid #f5d0fe;
-    padding: 2.5rem;
-  }
-
-  .service-hero-text h2 {
-    font-size: 1.6rem;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .service-hero-text p {
-    color: #475569;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-key-points {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .point-item {
-    font-size: 0.925rem;
-    color: #334155;
-    background: #ffffff;
-    padding: 0.65rem 1rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-  }
-
-  .point-item strong {
-    color: var(--color-primary-dark);
-  }
-
-  .service-hero-img-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .service-img {
-    max-height: 240px;
-    width: 100%;
-    object-fit: contain;
-  }
-
-  .client-type-card {
-    border-left: 4px solid var(--color-accent);
-    padding: 1.5rem;
-  }
-
-  .client-type-card h4 {
-    color: var(--color-primary);
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-  }
-
-  .client-type-card p {
-    font-size: 0.875rem;
-    color: #475569;
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  .inclusion-card {
-    border-top: 4px solid var(--color-primary);
-  }
-
-  .inc-icon {
-    width: 48px;
-    height: 48px;
-    background-color: var(--color-primary-surface);
-    color: var(--color-primary);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-
-  .inclusion-card h3 {
-    font-size: 1.25rem;
-    color: var(--color-primary);
-    margin-bottom: 0.75rem;
-  }
-
-  .inclusion-card p {
-    font-size: 0.95rem;
-    color: #475569;
-    margin-bottom: 1rem;
-  }
-
-  .detail-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    font-size: 0.9rem;
-  }
-
-  .detail-list li {
-    padding-left: 1.25rem;
-    position: relative;
-    color: #334155;
-    line-height: 1.5;
-  }
-
-  .detail-list li::before {
-    content: "•";
-    color: var(--color-accent);
-    font-size: 1.5rem;
-    position: absolute;
-    left: 0;
-    top: -4px;
-  }
-
-  .detail-list strong {
-    color: var(--color-primary-dark);
-  }
-</style>

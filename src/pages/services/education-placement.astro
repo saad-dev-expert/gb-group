@@ -1,273 +1,136 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import EnquiryForm from "../../components/EnquiryForm.astro";
+import FAQ from "../../components/FAQ.astro";
+import { faqs, waLink } from "../../config/site";
+import { serviceSchema, faqSchema } from "../../lib/schema";
 
-const pageTitle = "Education Consultant & Placement | GB Group";
-const pageDescription = "GB Group Education Consultant & Placement services in Jharkhand and West Bengal. Professional course selection, college admissions, career counselling, and job placement assistance.";
+const pageTitle = "Education & Placement in Jharkhand & West Bengal | GB GROUP";
+const pageDescription =
+  "GB GROUP helps students with course selection, college admissions, career counselling and placement support across Jharkhand and West Bengal.";
+const crumbs = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Education & Placement" },
+];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} canonicalPath="/services/education-placement">
-  <div class="container section">
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a> &gt; <a href="/services">Services</a> &gt; <span>Education Consultant &amp; Placement</span>
-    </nav>
-
-    <div class="section-header">
-      <span class="section-subtitle">Service 02 &bull; Academics &amp; Careers</span>
-      <h1 class="section-title">Education Consultant &amp; Placement in Jharkhand &amp; West Bengal</h1>
-      <p class="section-desc">
-        Empowering students and job seekers with authentic admission guidance, personalized career counselling, and verified job placement support.
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/services/education-placement"
+  accent="education"
+  breadcrumbs={crumbs}
+  schema={[
+    serviceSchema({
+      name: "Education & Placement",
+      description: pageDescription,
+      path: "/services/education-placement",
+      image: "/images/hero-education.webp",
+    }),
+    faqSchema(faqs.education),
+  ]}
+>
+  <section class="split-hero container">
+    <div class="split-copy">
+      <span class="eyebrow">02 Â· Academics &amp; careers</span>
+      <h1>The right course. The right campus. The next step.</h1>
+      <p class="lead">
+        GB GROUP works with students and parents from school to campus to career â€” matching
+        interests to courses, opening admission routes in recognised institutions and preparing
+        graduates for the workplace.
       </p>
-    </div>
-
-    <!-- Visual Banner / Intro Card -->
-    <div class="card service-hero-card">
-      <div class="grid-2">
-        <div class="service-hero-text">
-          <span class="badge" style="margin-bottom: 0.75rem;">From Campus to Career</span>
-          <h2>Your Pathway to Top Universities &amp; Corporate Careers</h2>
-          <p>
-            Choosing the right academic course and securing genuine job opportunities shouldn't be left to guesswork. <strong>GB Group</strong> works directly with accredited colleges, universities, and corporate recruiters to ensure seamless admissions and fruitful career placements for students in <strong>Jharkhand</strong> and <strong>West Bengal</strong>.
-          </p>
-          <div class="hero-key-points">
-            <div class="point-item">
-              <strong>100% Genuine Guidance:</strong> Transparent fees, recognized degrees, and direct admission counselling.
-            </div>
-            <div class="point-item">
-              <strong>Corporate Placement Support:</strong> Resume preparation, interview training, and placement drives.
-            </div>
-          </div>
-        </div>
-        <div class="service-hero-img-box">
-          <img src="/images/education.svg" alt="GB Group Education Consultant and Placement" class="service-img" />
-        </div>
+      <div class="hero-actions">
+        <a href="#student-enquiry" class="btn btn-primary btn-lg">Ask a counsellor</a>
+        <a href={waLink()} target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg" data-track="whatsapp" data-track-label="Education hero WhatsApp">Chat on WhatsApp</a>
       </div>
     </div>
+    <div class="split-media" data-reveal>
+      <figure class="media-frame tall">
+        <img src="/images/hero-education.webp" alt="Students together on a university campus" width="1800" height="950" fetchpriority="high" />
+        <figcaption class="media-badge">Guidance from campus to career</figcaption>
+      </figure>
+    </div>
+  </section>
 
-    <!-- The 4 Core Educational Offerings -->
-    <div class="grid-2" style="margin-top: 3rem;">
-      <div class="card edu-card">
-        <div class="edu-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-          </svg>
-        </div>
-        <h3>1. Course &amp; College/University Guidance</h3>
-        <p>
-          We provide students with in-depth evaluation and counselling to pick the course that matches their skills and market demand:
-        </p>
-        <ul class="detail-list">
-          <li><strong>Engineering &amp; Technology:</strong> B.Tech, M.Tech, Polytechnic &amp; Diploma (Computer Science, Mechanical, Civil, Electrical).</li>
-          <li><strong>Management &amp; Commerce:</strong> MBA, PGDM, BBA, B.Com (Finance, Marketing, HR, Business Analytics).</li>
-          <li><strong>Computer Applications &amp; IT:</strong> BCA, MCA, Data Science, and Cloud Computing specializations.</li>
-          <li><strong>Healthcare &amp; Allied Sciences:</strong> B.Pharma, D.Pharma, B.Sc Nursing, Paramedical courses.</li>
-          <li><strong>Law, Design &amp; Humanities:</strong> BA LLB, BBA LLB, Hotel Management, Mass Communication.</li>
-        </ul>
+  <div class="container"><Breadcrumbs items={crumbs} /></div>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section--head">
+        <span class="eyebrow">Your pathway</span>
+        <h2>Four stages, clearly mapped.</h2>
       </div>
-
-      <div class="card edu-card">
-        <div class="edu-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-          </svg>
-        </div>
-        <h3>2. Admission Help</h3>
-        <p>
-          We remove the uncertainty and documentation hassle from the admission process:
-        </p>
-        <ul class="detail-list">
-          <li>Guidance for state &amp; national entrance tests, counselling rounds, and quota criteria.</li>
-          <li>Assistance with application forms, document verification, and eligibility checks.</li>
-          <li>Direct admission coordination in UGC, AICTE, and PCI-approved institutions.</li>
-          <li>Education loan assistance and scholarship guidance for eligible students.</li>
-          <li>Guidance for students from Jharkhand seeking top colleges in West Bengal and vice versa.</li>
-        </ul>
-      </div>
-
-      <div class="card edu-card">
-        <div class="edu-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-          </svg>
-        </div>
-        <h3>3. Career Counselling</h3>
-        <p>
-          Personalized mentoring to help students and working professionals define actionable career roadmaps:
-        </p>
-        <ul class="detail-list">
-          <li>One-on-one sessions analyzing strengths, interests, and academic performance.</li>
-          <li>Insights into high-growth industry sectors and in-demand future skills.</li>
-          <li>Overcoming confusion between multiple career paths or course options.</li>
-          <li>Post-graduate and international education pathway exploration.</li>
-        </ul>
-      </div>
-
-      <div class="card edu-card">
-        <div class="edu-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-          </svg>
-        </div>
-        <h3>4. Job Placement Support</h3>
-        <p>
-          We bridge the gap between fresh graduates, skilled professionals, and leading employers:
-        </p>
-        <ul class="detail-list">
-          <li>Corporate recruitment tie-ups across IT, Manufacturing, Retail, BFSI, and Logistics.</li>
-          <li>Professional resume formatting and LinkedIn profile enhancement.</li>
-          <li>Mock interviews, group discussion (GD) coaching, and soft skills training.</li>
-          <li>Direct referral to active hiring openings across Kolkata, Ranchi, and pan-India.</li>
-        </ul>
+      <div class="steps four">
+        <div class="step" data-reveal><h3>Understand</h3><p>One-on-one discussion of strengths, interests and budget.</p></div>
+        <div class="step" data-reveal><h3>Choose</h3><p>Shortlist courses and recognised institutions that fit.</p></div>
+        <div class="step" data-reveal><h3>Admission</h3><p>Forms, documents, entrance guidance and scholarship options.</p></div>
+        <div class="step" data-reveal><h3>Career</h3><p>Resume, interviews and referrals to active hiring partners.</p></div>
       </div>
     </div>
+  </section>
 
-    <!-- Dedicated Student Enquiry Section -->
-    <div class="student-enquiry-wrapper" id="student-enquiry" style="margin-top: 4rem;">
-      <div class="section-header">
-        <span class="section-subtitle">Dedicated Student Desk</span>
-        <h2 class="section-title">Student Enquiry Form</h2>
-        <p class="section-desc">
-          Are you a student or parent seeking course admission or job placement? Fill out the student enquiry below for direct guidance from our counsellors.
-        </p>
+  <section class="section">
+    <div class="container">
+      <div class="section--head">
+        <span class="eyebrow">Areas of guidance</span>
+        <h2>Support for the questions students actually ask.</h2>
       </div>
+      <div class="image-grid">
+        <figure class="image-card" data-reveal><img src="/images/education-books.webp" alt="Books and study material" loading="lazy" decoding="async" width="1000" height="700" /><figcaption>Stream &amp; course selection</figcaption></figure>
+        <figure class="image-card" data-reveal><img src="/images/education-library.webp" alt="University library" loading="lazy" decoding="async" width="1000" height="700" /><figcaption>College &amp; university admissions</figcaption></figure>
+        <figure class="image-card" data-reveal><img src="/images/education-graduation.webp" alt="Graduates celebrating" loading="lazy" decoding="async" width="1000" height="700" /><figcaption>Scholarships &amp; education loans</figcaption></figure>
+        <figure class="image-card" data-reveal><img src="/images/education-counselling.webp" alt="A one-to-one guidance conversation" loading="lazy" decoding="async" width="1000" height="700" /><figcaption>Career counselling &amp; placement</figcaption></figure>
+      </div>
+      <div class="chip-row" style="margin-top:1.8rem">
+        <span class="chip">Engineering &amp; Technology</span>
+        <span class="chip">Management &amp; Commerce</span>
+        <span class="chip">Computer Applications</span>
+        <span class="chip">Healthcare &amp; Allied Sciences</span>
+        <span class="chip">Law, Design &amp; Humanities</span>
+      </div>
+    </div>
+  </section>
 
+  <section class="section section--tint">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-copy" data-reveal>
+          <span class="eyebrow">Admission &amp; placement desk</span>
+          <h2>Help with the process, not just the advice.</h2>
+          <ul class="check-list">
+            <li>Application forms, document checks and eligibility review</li>
+            <li>Entrance test and counselling-round guidance</li>
+            <li>Education loan and scholarship documentation</li>
+            <li>Resume, LinkedIn, mock interviews and group discussions</li>
+            <li>Referrals across IT, manufacturing, retail, BFSI and logistics</li>
+          </ul>
+        </div>
+        <div class="feature-media" data-reveal>
+          <figure class="media-frame wide"><img src="/images/education-counselling.webp" alt="Counsellor speaking with a student" loading="lazy" decoding="async" width="1000" height="700" /><figcaption class="media-badge">One-to-one guidance</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="student-enquiry">
+    <div class="container">
       <EnquiryForm
-        title="Student Admission & Placement Enquiry"
-        subtitle="Specify your current qualification and intended course or job sector in your message"
-        preselectedService="Education Consultant & Placement"
-        isFixedService={true}
-        formId="studentEnquiryForm"
+        id="studentForm"
+        title="Student enquiry"
+        intro="Tell us your qualification and the course or career you are considering. Sharing your requirement takes less than a minute."
+        eyebrow="Dedicated student desk"
+        service="Education & Placement"
+        source="education"
       />
     </div>
-  </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section--head"><span class="eyebrow">Good to know</span><h2>Admission &amp; placement questions</h2></div>
+      <FAQ items={faqs.education} />
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-  .breadcrumb {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .breadcrumb a {
-    color: var(--color-primary);
-  }
-
-  .service-hero-card {
-    background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
-    border: 1px solid #bbf7d0;
-    padding: 2.5rem;
-  }
-
-  .service-hero-text h2 {
-    font-size: 1.6rem;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .service-hero-text p {
-    color: #475569;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-key-points {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .point-item {
-    font-size: 0.925rem;
-    color: #334155;
-    background: #ffffff;
-    padding: 0.65rem 1rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-  }
-
-  .point-item strong {
-    color: var(--color-primary-dark);
-  }
-
-  .service-hero-img-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .service-img {
-    max-height: 240px;
-    width: 100%;
-    object-fit: contain;
-  }
-
-  .edu-card {
-    border-top: 4px solid var(--color-accent);
-  }
-
-  .edu-icon {
-    width: 48px;
-    height: 48px;
-    background-color: var(--color-primary-surface);
-    color: var(--color-primary);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-
-  .edu-card h3 {
-    font-size: 1.25rem;
-    color: var(--color-primary);
-    margin-bottom: 0.75rem;
-  }
-
-  .edu-card p {
-    font-size: 0.95rem;
-    color: #475569;
-    margin-bottom: 1rem;
-  }
-
-  .detail-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    font-size: 0.9rem;
-  }
-
-  .detail-list li {
-    padding-left: 1.25rem;
-    position: relative;
-    color: #334155;
-    line-height: 1.5;
-  }
-
-  .detail-list li::before {
-    content: "•";
-    color: var(--color-accent);
-    font-size: 1.5rem;
-    position: absolute;
-    left: 0;
-    top: -4px;
-  }
-
-  .detail-list strong {
-    color: var(--color-primary-dark);
-  }
-
-  .student-enquiry-wrapper {
-    background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 3rem 1.5rem;
-  }
-</style>

@@ -1,446 +1,128 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
-import EnquiryForm from "../components/EnquiryForm.astro";
+import { site, services, waLink } from "../config/site";
 
-const pageTitle = "GB Group | Consultancy in Jharkhand & West Bengal";
-const pageDescription = "GB Group is a premier consultancy and agency in Jharkhand & West Bengal offering 4 essential services under one roof: Transport & Export, Education & Placement, Land Sales & Joint Work, and Advertisement & Marketing.";
-
-const services = [
-  {
-    title: "Transport & Export",
-    description: "Reliable goods transport and end-to-end export support across Jharkhand, West Bengal, and major ports with guaranteed safe and on-time delivery.",
-    link: "/services/transport-export",
-    badge: "Service 01",
-    features: [
-      "Heavy & commercial goods movement",
-      "Kolkata & Haldia port export connectivity",
-      "Documentation & customs clearance support",
-      "Full coverage across Jharkhand & West Bengal"
-    ]
-  },
-  {
-    title: "Education Consultant & Placement",
-    description: "Professional guidance for colleges, universities, professional courses, and job placements for ambitious students across the region.",
-    link: "/services/education-placement",
-    badge: "Service 02",
-    features: [
-      "Top college & university admissions",
-      "Expert career counselling & course selection",
-      "Verified corporate job placement support",
-      "Dedicated student enquiry desk"
-    ]
-  },
-  {
-    title: "Land Sales & Joint Work",
-    description: "Transparent land buying, selling, and profitable joint ventures for commercial, residential, and industrial projects in prime locations.",
-    link: "/services/land-joint-work",
-    badge: "Service 03",
-    features: [
-      "Verified commercial & residential land",
-      "Transparent joint venture agreements",
-      "Clear legal title & documentation checks",
-      "Location-wise listings: Area, Size, Purpose"
-    ]
-  },
-  {
-    title: "Advertisement & Marketing",
-    description: "Results-driven business advertising, branding, digital marketing, and local on-ground campaigns to rapidly grow your company.",
-    link: "/services/advertising-marketing",
-    badge: "Service 04",
-    features: [
-      "Brand strategy & identity design",
-      "High-impact social media & digital marketing",
-      "Local posters, hoardings & regional campaigns",
-      "Targeted lead generation for businesses"
-    ]
-  }
-];
+const pageTitle = "GB GROUP | Transport, Education, Land & Marketing in Jharkhand & West Bengal";
+const pageDescription =
+  "GB GROUP brings Transport & Export, Education & Placement, Land Sales & Joint Ventures, and Advertisement & Marketing together under one roof across Jharkhand and West Bengal.";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} canonicalPath="/">
-  <!-- SECTION 1: HERO -->
-  <section class="hero-section">
-    <div class="container hero-container">
-      <div class="hero-badge">
-        <span class="pulse-dot"></span>
-        <span>Trusted Consultancy &bull; Jharkhand &amp; West Bengal</span>
-      </div>
-      
-      <h1 class="hero-title">
-        GB Group — <span class="highlight">Ek Chhat Ke Neeche</span> 4 Badi Services
-      </h1>
-      
-      <p class="hero-intro">
-        GB Group brings together four vital agency services under one single roof: <strong>Transport &amp; Export</strong>, <strong>Education Consultant &amp; Placement</strong>, <strong>Land Sales &amp; Joint Work</strong>, and <strong>Advertisement &amp; Marketing</strong>. Backed by deep regional network, reliable execution, and direct leadership under CEO Mohit Mallar.
+  <section class="page-hero">
+    <img
+      class="hero-bg"
+      src="/images/hero-logistics.webp"
+      alt=""
+      width="1920"
+      height="1000"
+      fetchpriority="high"
+    />
+    <div class="container">
+      <span class="eyebrow">{site.brand} Â· Jharkhand &amp; West Bengal</span>
+      <h1>Four essential services. One accountable team.</h1>
+      <p class="hero-sub">
+        From moving freight to finding the right course, from clear-title land to campaigns that
+        convert â€” GB GROUP brings four specialist services together, with direct access to our
+        leadership team.
       </p>
-
       <div class="hero-actions">
-        <a href="#enquiry-section" class="btn btn-primary btn-lg">
-          Enquire Now
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-          </svg>
+        <a href="#services" class="btn btn-primary btn-lg">Explore our services <span class="arrow" aria-hidden="true">â†’</span></a>
+        <a
+          href={waLink()}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-whatsapp btn-lg"
+          data-track="whatsapp"
+          data-track-label="Home hero WhatsApp"
+        >
+          Chat on WhatsApp
         </a>
-        <a href="https://wa.me/917439786518" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.26-1.5-1.4-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/>
-          </svg>
-          WhatsApp CEO: 74397 86518
-        </a>
       </div>
 
-      <!-- Quick Trust Counters -->
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-number">4</span>
-          <span class="stat-label">Core Business Services</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">2</span>
-          <span class="stat-label">States: Jharkhand &amp; Bengal</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">Transparent &amp; Verified</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">24/7</span>
-          <span class="stat-label">Direct Communication</span>
-        </div>
+      <div class="stat-band" aria-label="GB GROUP at a glance">
+        <div class="stat"><strong>04</strong><span>Core services</span></div>
+        <div class="stat"><strong>02</strong><span>States served</span></div>
+        <div class="stat"><strong>13+</strong><span>Cities &amp; industrial hubs</span></div>
+        <div class="stat"><strong>01</strong><span>Direct point of contact</span></div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 2: 4 SERVICES CARDS -->
-  <section class="section section-alt" id="services-section">
+  <section class="section" id="services">
     <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">What We Offer</span>
-        <h2 class="section-title">The Four Core Services of GB Group</h2>
-        <p class="section-desc">
-          Everything you need for business growth, logistics, land investments, and education guidance in Jharkhand and West Bengal. Click any service to view full details.
+      <div class="section--head center" data-reveal>
+        <span class="eyebrow">One group. Four capabilities.</span>
+        <h2>Built around what eastern India needs.</h2>
+        <p class="lead">
+          Each service is handled by a focused team, backed by the same network, standards and
+          direct oversight. Choose where you need help.
         </p>
       </div>
-
-      <div class="grid-4">
-        {services.map((srv) => (
-          <ServiceCard
-            title={srv.title}
-            description={srv.description}
-            link={srv.link}
-            badge={srv.badge}
-            features={srv.features}
-          />
-        ))}
+      <div class="service-grid">
+        {services.map((service, index) => <ServiceCard service={service} index={index} />)}
       </div>
     </div>
   </section>
 
-  <!-- SECTION 3: WHY GB GROUP -->
-  <section class="section" id="why-gbgroup">
+  <section class="section section--tint">
     <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">The GB Group Advantage</span>
-        <h2 class="section-title">Why Choose GB Group?</h2>
-        <p class="section-desc">
-          We combine local on-ground presence with professional standards, ensuring every client receives tailored solutions without multiple middlemen.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <div class="card feature-box">
-          <div class="feature-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-          </div>
-          <h3>Trusted Local Expertise</h3>
-          <p>
-            Operating directly in Jharkhand and West Bengal with genuine local insights, reliable contacts, legal clarity, and proven execution on the ground.
+      <div class="feature-row">
+        <div class="feature-copy" data-reveal>
+          <span class="eyebrow">Regional reach Â· Real presence</span>
+          <h2>Local knowledge, without the middlemen.</h2>
+          <p class="lead">
+            Our work happens on the ground â€” in industrial belts, port corridors, campuses and
+            commercial districts across two states. You deal with the people who actually get
+            things done.
           </p>
-        </div>
-
-        <div class="card feature-box">
-          <div class="feature-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="3" y1="9" x2="21" y2="9"></line>
-              <line x1="9" y1="21" x2="9" y2="9"></line>
-            </svg>
-          </div>
-          <h3>All Under One Roof</h3>
-          <p>
-            No need to coordinate with separate agencies. From transport and export logistics to land joint ventures, education guidance, and business marketing.
-          </p>
-        </div>
-
-        <div class="card feature-box">
-          <div class="feature-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </div>
-          <h3>Direct Leadership Access</h3>
-          <p>
-            You speak directly to our leadership team and CEO Mohit Mallar for fast decision-making, transparent terms, and complete accountability.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: AREAS WE SERVE -->
-  <section class="section section-alt" id="areas-we-serve">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Geographic Footprint</span>
-        <h2 class="section-title">Areas We Serve: Jharkhand &amp; West Bengal</h2>
-        <p class="section-desc">
-          Deep roots and operational reach across key industrial belts, commercial metros, and educational hubs.
-        </p>
-      </div>
-
-      <div class="grid-2 areas-grid">
-        <div class="card state-card">
-          <div class="state-header">
-            <span class="badge">State 01</span>
-            <h3>Jharkhand</h3>
-          </div>
-          <p class="state-intro">
-            Comprehensive transport corridors, industrial land deals, student placement, and marketing across major mineral and industrial belts:
-          </p>
-          <ul class="cities-list">
-            <li><strong>Ranchi:</strong> Capital hub for education counselling, institutional admissions &amp; regional land development.</li>
-            <li><strong>Jamshedpur (Tatanagar):</strong> Industrial transport logistics, factory goods movement &amp; commercial joint ventures.</li>
-            <li><strong>Dhanbad &amp; Bokaro:</strong> Heavy minerals freight, logistics support, and commercial land sales.</li>
-            <li><strong>Deoghar &amp; Hazaribagh:</strong> Retail marketing, educational admissions, and residential land plots.</li>
+          <ul class="check-list">
+            <li>On-ground networks across Jharkhand and West Bengal</li>
+            <li>Direct communication with leadership at every step</li>
+            <li>Verification and documentation built into every process</li>
           </ul>
-        </div>
-
-        <div class="card state-card">
-          <div class="state-header">
-            <span class="badge">State 02</span>
-            <h3>West Bengal</h3>
+          <div class="chip-row" style="margin-top:1.6rem">
+            <span class="chip">Ranchi</span>
+            <span class="chip">Jamshedpur</span>
+            <span class="chip">Dhanbad</span>
+            <span class="chip">Kolkata</span>
+            <span class="chip">Haldia</span>
+            <span class="chip">Durgapur</span>
+            <span class="chip">Siliguri</span>
           </div>
-          <p class="state-intro">
-            Headquartered in Sector V Kolkata with extensive coverage of port connectivity, real estate ventures, and commercial branding:
-          </p>
-          <ul class="cities-list">
-            <li><strong>Kolkata (Sector V &amp; Metros):</strong> Agency headquarters, IT hub marketing, university placements, and prime commercial joint work.</li>
-            <li><strong>Howrah &amp; Hooghly:</strong> Transport depot corridors, freight transit &amp; industrial warehousing land.</li>
-            <li><strong>Haldia:</strong> Direct port export facilitation, customs coordination, and maritime goods transport.</li>
-            <li><strong>Durgapur &amp; Asansol:</strong> Steel belt logistics, commercial properties &amp; institutional marketing.</li>
-            <li><strong>Siliguri &amp; North Bengal:</strong> Strategic gateway transport and educational placement network.</li>
-          </ul>
+        </div>
+        <div class="feature-media" data-reveal>
+          <figure class="media-frame wide">
+            <img src="/images/about-city.webp" alt="Salt Lake Sector V skyline in Kolkata" loading="lazy" decoding="async" width="1400" height="900" />
+            <figcaption class="media-badge">Kolkata Â· Sector V</figcaption>
+          </figure>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 5: ENQUIRY FORM -->
-  <section class="section" id="enquiry-section">
+  <section class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Get In Touch</span>
-        <h2 class="section-title">Send Your Enquiry to GB Group</h2>
-        <p class="section-desc">
-          Fill in your details below. Your enquiry will instantly be forwarded to our CEO Mohit Mallar on WhatsApp (74397 86518) and email (ceo@gbgroup.co.in).
-        </p>
+      <div class="cta-band" data-reveal>
+        <div>
+          <span class="eyebrow">Start a conversation</span>
+          <h2>Talk to {site.brand} directly.</h2>
+          <p>Tell us what you are trying to achieve. We will point you to the right service and the right person.</p>
+        </div>
+        <div class="cta-actions">
+          <a
+            href={waLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-whatsapp btn-lg"
+            data-track="whatsapp"
+            data-track-label="Home CTA WhatsApp"
+          >
+            Chat on WhatsApp
+          </a>
+          <a href="/contact" class="btn btn-outline btn-lg">Send an enquiry <span class="arrow" aria-hidden="true">â†’</span></a>
+        </div>
       </div>
-
-      <EnquiryForm
-        title="GB Group Official Enquiry Form"
-        subtitle="Prompt response guaranteed for all 4 services across Jharkhand & West Bengal"
-      />
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  /* Hero Section */
-  .hero-section {
-    background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
-    padding: 3.5rem 0 3rem;
-    text-align: center;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  @media (min-width: 768px) {
-    .hero-section {
-      padding: 5rem 0 4rem;
-    }
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background-color: #ffffff;
-    border: 1px solid #bfdbfe;
-    padding: 0.4rem 1rem;
-    border-radius: var(--radius-full);
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .pulse-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #22c55e;
-    border-radius: 50%;
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
-  }
-
-  .hero-title {
-    max-width: 880px;
-    margin: 0 auto 1.25rem;
-    color: var(--color-primary-dark);
-  }
-
-  .hero-title .highlight {
-    color: var(--color-accent);
-    position: relative;
-    display: inline-block;
-  }
-
-  .hero-intro {
-    max-width: 760px;
-    margin: 0 auto 2rem;
-    font-size: 1.15rem;
-    line-height: 1.65;
-    color: #475569;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3rem;
-  }
-
-  @media (min-width: 640px) {
-    .hero-actions {
-      flex-direction: row;
-    }
-  }
-
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    max-width: 840px;
-    margin: 0 auto;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  @media (min-width: 768px) {
-    .hero-stats {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  .stat-item {
-    background: #ffffff;
-    padding: 1rem;
-    border-radius: var(--radius-md);
-    border: 1px solid #e2e8f0;
-  }
-
-  .stat-number {
-    display: block;
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--color-primary);
-    line-height: 1.1;
-    margin-bottom: 0.25rem;
-  }
-
-  .stat-label {
-    font-size: 0.825rem;
-    color: var(--color-text-muted);
-    font-weight: 600;
-  }
-
-  /* Feature Box */
-  .feature-box {
-    text-align: left;
-    border-top: 4px solid var(--color-accent);
-  }
-
-  .feature-icon {
-    width: 52px;
-    height: 52px;
-    background-color: var(--color-primary-surface);
-    color: var(--color-primary);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-  }
-
-  .feature-box h3 {
-    margin-bottom: 0.65rem;
-    font-size: 1.25rem;
-  }
-
-  .feature-box p {
-    font-size: 0.95rem;
-    color: #475569;
-    line-height: 1.6;
-  }
-
-  /* Areas We Serve */
-  .state-card {
-    border-top: 4px solid var(--color-primary);
-  }
-
-  .state-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-  }
-
-  .state-intro {
-    font-size: 0.95rem;
-    color: #475569;
-    margin-bottom: 1.25rem;
-  }
-
-  .cities-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-
-  .cities-list li {
-    font-size: 0.925rem;
-    color: #334155;
-    padding-left: 1.25rem;
-    position: relative;
-    line-height: 1.5;
-  }
-
-  .cities-list li::before {
-    content: "•";
-    color: var(--color-accent);
-    font-size: 1.5rem;
-    position: absolute;
-    left: 0;
-    top: -4px;
-  }
-
-  .cities-list strong {
-    color: var(--color-primary-dark);
-  }
-</style>

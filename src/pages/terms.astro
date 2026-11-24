@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../config/site";
+
+const pageTitle = "Terms of Use | GB GROUP";
+const pageDescription = "Terms governing the use of the GB GROUP website and the information published on it.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} canonicalPath="/terms">
+  <section class="section container">
+    <span class="eyebrow">Legal</span>
+    <h1>Terms of Use</h1>
+    <p class="lead muted">Last updated: 24 November 2026</p>
+
+    <div class="legal">
+      <h2>1. Using this website</h2>
+      <p>
+        This website is provided by {site.brand} for information about our services. You may browse
+        and share its pages, but you may not copy the content or branding for another commercial
+        purpose without written permission.
+      </p>
+
+      <h2>2. Information is not a binding offer</h2>
+      <p>
+        Descriptions, figures, property details and indicative scopes are published for guidance.
+        A service commitment exists only when its scope, price, timeline and responsibilities have
+        been agreed separately and confirmed by {site.brand}.
+      </p>
+
+      <h2>3. Property and joint venture listings</h2>
+      <p>
+        Listings are subject to verification and availability. Sizes, purposes, approvals and deal
+        structures must be confirmed before any decision or payment. Representative images do not
+        depict a specific surveyed plot.
+      </p>
+
+      <h2>4. Education and placement</h2>
+      <p>
+        Admission depends on the institution's rules and the applicant's eligibility. Placement
+        assistance includes guidance, preparation and referrals; final hiring decisions rest with
+        employers. No outcome is guaranteed by this website.
+      </p>
+
+      <h2>5. External links</h2>
+      <p>
+        Links to WhatsApp, Google Maps and other sites lead to services we do not control. Their
+        terms and privacy practices apply once you leave this website.
+      </p>
+
+      <h2>6. Limitation</h2>
+      <p>
+        We take care to keep information accurate, but this website is provided "as is". Decisions
+        based on its content should be confirmed directly with our team.
+      </p>
+
+      <h2>7. Contact</h2>
+      <p>
+        For questions about these terms: <a href={`mailto:${site.email}`}>{site.email}</a> Â·
+        <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -2,87 +2,131 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { site } from "../config/site";
+import {
+  organizationSchema,
+  localBusinessSchema,
+  websiteSchema,
+  breadcrumbSchema,
+} from "../lib/schema";
 import "../styles/global.css";
 
 interface Props {
   title: string;
   description: string;
   canonicalPath?: string;
+  ogImage?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  breadcrumbs?: { label: string; href?: string }[];
+  accent?: string;
+  mainClass?: string;
+  noIndex?: boolean;
 }
 
 const {
   title,
   description,
   canonicalPath = "",
+  ogImage = "/og-image.png",
+  schema,
+  breadcrumbs,
+  accent = "#0284c7",
+  mainClass = "",
+  noIndex = false,
 } = Astro.props;
 
-const siteUrl = "https://www.gbgroup.in";
-const canonicalUrl = canonicalPath ? `${siteUrl}${canonicalPath}` : siteUrl;
+const canonicalUrl = canonicalPath ? `${site.url}${canonicalPath}` : site.url;
+const imageUrl = ogImage.startsWith("http") ? ogImage : `${site.url}${ogImage}`;
+const extraSchema = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const graph = [
+  organizationSchema,
+  localBusinessSchema,
+  websiteSchema,
+  ...(breadcrumbs?.length ? [breadcrumbSchema(breadcrumbs)] : []),
+  ...extraSchema,
+];
+const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(
+  /</g,
+  "\\u003c"
+);
 ---
 
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#18337a" />
-    <link rel="icon" type="image/png" href="/logo.png" />
+    <!-- Favicons derived from the official GB GROUP logo -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content="GB Group" />
-    <meta name="robots" content="index, follow" />
+    <meta name="author" content={site.brand} />
+    <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={site.brand} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${siteUrl}/logo.png`} />
-    <meta property="og:site_name" content="GB Group" />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:secure_url" content={imageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GB GROUP — four services under one roof in Jharkhand and West Bengal" />
 
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${siteUrl}/logo.png`} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content="GB GROUP — four services under one roof in Jharkhand and West Bengal" />
 
-    <!-- Structured Data for Business -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "GB Group",
-      "image": "https://www.gbgroup.in/logo.png",
-      "url": "https://www.gbgroup.in",
-      "telephone": "+917439786518",
-      "email": "ceo@gbgroup.co.in",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "GC 50, Block Sector V",
-        "addressLocality": "Kolkata",
-        "addressRegion": "West Bengal",
-        "postalCode": "700064",
-        "addressCountry": "IN"
-      },
-      "areaServed": ["Jharkhand", "West Bengal"],
-      "description": "GB Group consultancy and agency offering Transport & Export, Education Consultant & Placement, Land Sales & Joint Work, and Advertisement & Marketing across Jharkhand and West Bengal."
-    })} />
+    <script type="application/ld+json" set:html={jsonLd} />
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
+
+    {
+      site.analyticsId && (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${site.analyticsId}`}
+          ></script>
+          <script
+            is:inline
+            set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',${JSON.stringify(site.analyticsId)});`}
+          />
+        </>
+      )
+    }
   </head>
   <body>
-    <!-- Persistent Header across all pages -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <Header currentPath={canonicalPath} />
-
-    <!-- Main Page Content -->
-    <main id="main-content">
+    <main id="main-content" class={mainClass} data-accent={accent}>
       <slot />
     </main>
-
-    <!-- Persistent Footer across all pages -->
     <Footer />
-
-    <!-- Floating Call & WhatsApp Buttons on every page -->
     <WhatsAppButton />
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V5"></path>
+        <path d="M5 12l7-7 7 7"></path>
+      </svg>
+    </button>
+    <script>
+      import "../scripts/main.ts";
+    </script>
   </body>
 </html>

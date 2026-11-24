@@ -1,115 +1,76 @@
 # GB GROUP — Official Website
 
-> **Consultancy / Agency • Jharkhand & West Bengal**  
-> **Domain:** [www.gbgroup.in](https://www.gbgroup.in)  
-> **Leadership:** Mohit Mallar (CEO)  
-> **Mobile / WhatsApp:** [74397 86518](https://wa.me/917439786518)  
-> **Email:** [ceo@gbgroup.co.in](mailto:ceo@gbgroup.co.in)  
-> **Office Address:** GC 50, Block Sector V, Kolkata, West Bengal – 700064
+> Brand: **GB GROUP** (the domain is only a web address, never the brand)
+> Consultancy / agency · Jharkhand & West Bengal · CEO Mohit Mallar
+> www.gbgroup.in
+
+A visual-first, static marketing website for four service verticals:
+
+1. **Transport & Export** — `/services/transport-export`
+2. **Education & Placement** — `/services/education-placement`
+3. **Land Sales & Joint Ventures** — `/services/land-joint-work`
+4. **Advertisement & Marketing** — `/services/advertising-marketing`
+
+Plus a filterable [property portfolio](/land-joint-venture), About, Contact, Privacy Policy, Terms and a branded 404 page.
 
 ---
 
-## 📌 Project Overview
-Built strictly following the **GB Group Website Blueprint**.  
-- **Brand Slogan:** *"GB Group — Ek Chhat Ke Neeche 4 Badi Services"*
-- **Core Services:**
-  1. **Transport & Export** (`/services/transport-export`)
-  2. **Education Consultant & Placement** (`/services/education-placement`)
-  3. **Land Sales & Joint Work** (`/services/land-joint-work`)
-  4. **Advertisement & Marketing** (`/services/advertising-marketing`)
-- **Key Feature Page:**
-  - **Land Sales & Joint Venture** (`/land-joint-venture`) — Location-wise listing layout by **Area, Size, and Purpose** across Jharkhand & West Bengal.
+## Stack
 
----
+- Astro 4 (static output), vanilla CSS design system, no UI framework
+- `@astrojs/sitemap` generates `sitemap-index.xml` / `sitemap-0.xml` at build time
+- All imagery and the logo are local, optimised WebP/SVG assets in `public/`
+- No backend is required, but a configurable lead endpoint is supported (see below)
 
-## 🚀 Tech Stack
-- **Framework:** [Astro](https://astro.build/) (Static Site Generation — SSG)
-- **Styling:** Mobile-first responsive CSS (`src/styles/global.css`)
-- **Backend:** Pure static (No backend, no database, no login required)
-- **Forms:** Client-side 10-digit phone validation routing directly to WhatsApp (+91 74397 86518) and Email (`ceo@gbgroup.co.in`).
+## Commands
 
----
-
-## 📂 Project Structure
-
-```text
-gb-group/
-├── dist/                                  # Production-ready static output (Deploy this folder)
-├── public/
-│   ├── logo.png                           # Official GB Group dark blue logo
-│   ├── robots.txt                         # Search engine directives
-│   ├── sitemap.xml                        # Complete XML sitemap for SEO
-│   └── images/
-│       ├── transport.svg                  # Transport & Export vector artwork
-│       ├── education.svg                  # Education & Placement vector artwork
-│       ├── land.svg                       # Land Sales & Joint Work vector artwork
-│       └── marketing.svg                  # Advertisement & Marketing vector artwork
-├── src/
-│   ├── components/
-│   │   ├── Header.astro                   # Header with Logo, Navigation & Call/WhatsApp buttons
-│   │   ├── Footer.astro                   # Footer with Services, Navigation, Contact details & Copyright
-│   │   ├── ServiceCard.astro              # Card component for the 4 core services
-│   │   ├── EnquiryForm.astro              # Validated enquiry form with WhatsApp & Email submission
-│   │   └── WhatsAppButton.astro           # Floating WhatsApp button + mobile bottom action bar
-│   ├── layouts/
-│   │   └── BaseLayout.astro               # Shared layout, SEO meta tags & Schema.org structured data
-│   ├── pages/
-│   │   ├── index.astro                    # Home ("GB Group — Ek Chhat Ke Neeche 4 Badi Services")
-│   │   ├── about.astro                    # About Us
-│   │   ├── services.astro                 # Our Services (Overview of all 4)
-│   │   ├── services/
-│   │   │   ├── transport-export.astro     # Transport & Export in Jharkhand & West Bengal
-│   │   │   ├── education-placement.astro  # Education Consultant & Placement (+ Student Enquiry)
-│   │   │   ├── land-joint-work.astro      # Land Sales & Joint Work
-│   │   │   └── advertising-marketing.astro # Advertisement & Marketing
-│   │   ├── land-joint-venture.astro       # Land & Joint Venture (Area, Size, Purpose listings)
-│   │   └── contact.astro                  # Contact Us (Sector V Office, Google Maps, CEO contact)
-│   └── styles/
-│       └── global.css                     # Mobile-first stylesheet
-├── astro.config.mjs                       # Astro configuration (site: https://www.gbgroup.in)
-├── package.json                           # NPM dependencies and scripts
-└── README.md                              # Handover documentation
-```
-
----
-
-## 🛠️ Build and Development Steps
-
-### 1. Install Dependencies
 ```bash
 npm install
+npm run dev      # http://localhost:4321
+npm run check    # Astro diagnostics
+npm run build    # outputs static site to dist/
+npm run preview  # preview the production build
 ```
 
-### 2. Run Local Development Server
-```bash
-npm run dev
+Deploy the contents of `dist/` to any static host. `trailingSlash: 'never'` is configured; verify that the host serves `/about` (not only `/about/`) so canonical URLs resolve correctly.
+
+## Configuration
+
+Brand, contact details, navigation, services, listings and FAQs live in **`src/config/site.ts`**. Change the domain and contact information there — it feeds canonical URLs, JSON-LD, forms, header and footer.
+
+Optional integrations are read from environment variables. Copy `.env.example` to `.env`:
+
+| Variable | Purpose |
+|---|---|
+| `PUBLIC_GA_ID` | GA4 measurement ID (`G-…`). If empty, no analytics script loads. |
+| `PUBLIC_LEAD_ENDPOINT` | HTTPS JSON `POST` endpoint for enquiries. If empty, the form opens a prefilled WhatsApp message and offers an email fallback. |
+
+Lead endpoint payload:
+
+```json
+{
+  "name": "…", "phone": "10 digits", "email": "optional",
+  "service": "…", "message": "…", "source": "contact",
+  "submittedAt": "ISO timestamp"
+}
 ```
-Open [http://localhost:4321](http://localhost:4321) in your browser to test locally.
 
-### 3. Build for Production
-```bash
-npm run build
-```
-This generates the optimized static files in the `dist/` directory.
+When an endpoint is configured but unavailable, the form falls back to WhatsApp and tells the user. No lead is silently discarded.
 
-### 4. Preview the Production Build
-```bash
-npm run preview
-```
+## Tracking
 
----
+Contact links carry `data-track` attributes. Events fired via `gtag` when analytics is enabled: `contact_call`, `contact_whatsapp`, `contact_email`, `enquiry_submit`, `enquiry_success`, `enquiry_validation_error`, `property_filter`.
 
-## 🌐 Deployment to www.gbgroup.in
-Upload the entire contents of the `dist/` folder to your web server / hosting provider:
-- **cPanel / Apache / Nginx:** Upload all files inside `dist/` directly into `public_html/` (or web root).
-- **Vercel / Netlify / Cloudflare Pages:** Connect this repository or drag-and-drop the `dist/` folder.
-- Ensure SSL (HTTPS) is active for `https://www.gbgroup.in`.
+## Content notes
 
----
+- Photographs are **representative imagery** sourced from Unsplash and Wikimedia Commons, stored locally as WebP. They do not depict specific GB GROUP clients, employees, properties or projects. Property cards state this explicitly. When genuine site/team photography is available, replace the corresponding files in `public/images/` using the same filenames.
+- The official `logo.png` is retained but was downscaled/optimised; `favicon.svg` is a lightweight brand monogram.
+- Property listings, service copy and FAQs are data-driven from `src/config/site.ts`.
 
-## 📞 Official Contacts (Verified)
-- **CEO:** Mohit Mallar
-- **Mobile / WhatsApp:** +91 74397 86518
-- **Email:** ceo@gbgroup.co.in
-- **Website:** https://www.gbgroup.in
-- **Office Address:** GC 50, Block Sector V, Kolkata, West Bengal – 700064
+## Still needs client input / external accounts
+
+- GA4 measurement ID and a Search Console property.
+- A lead endpoint or CRM webhook if enquiries should be stored server-side.
+- Genuine project/team photography and any business registrations to display.
+- Social profile URLs (add to `site.social` to populate `sameAs` structured data).
+- Dependency security: current npm advisories are only fixable by a major Astro upgrade (v7), which is a separate migration task. The deployed output is static HTML with no server runtime.
