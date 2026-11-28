@@ -1,0 +1,572 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import EnquiryForm from "../components/EnquiryForm.astro";
+import FAQ from "../components/FAQ.astro";
+import { waLink } from "../config/site";
+import { serviceSchema, faqSchema } from "../lib/schema";
+import {
+  onlineMbaUniversities,
+  onlineMbaSpecialisations,
+  onlineMbaFaqs,
+} from "../data/onlineMba";
+
+const pageTitle =
+  "Online MBA Admissions 2026–27 in East India (Bihar, Jharkhand, Odisha, WB) | GB GROUP";
+const pageDescription =
+  "Compare UGC-DEB entitled Online MBA universities for students and working professionals in Bihar, Jharkhand, Odisha and West Bengal. Free career counselling and admission support from GB GROUP.";
+
+const crumbs = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Education & Placement", href: "/services/education-placement" },
+  { label: "Online MBA East India" },
+];
+
+const totalCount = onlineMbaUniversities.length;
+const top10List = onlineMbaUniversities.filter((u) => u.isTop10);
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/online-mba-east-india"
+  accent="education"
+  breadcrumbs={crumbs}
+  schema={[
+    serviceSchema({
+      name: "Online MBA Admissions Counselling — East India",
+      description: pageDescription,
+      path: "/online-mba-east-india",
+      image: "/images/hero-education.webp",
+    }),
+    faqSchema(onlineMbaFaqs),
+  ]}
+>
+  <section class="page-hero">
+    <img
+      class="hero-bg"
+      src="/images/hero-education.webp"
+      alt=""
+      width="1800"
+      height="950"
+      fetchpriority="high"
+    />
+    <div class="container">
+      <span class="eyebrow">Admission Open · Online MBA 2026–27 Batch</span>
+      <h1>Top-Ranked Online MBA Programmes for East India.</h1>
+      <p class="hero-sub">
+        Designed for graduates and working professionals across Bihar, Jharkhand, Odisha and West
+        Bengal. Compare UGC-DEB entitled universities, indicative fees, specialisations and
+        eligibility with free one-to-one counselling from GB GROUP.
+      </p>
+      <div class="hero-actions">
+        <a href="#mba-enquiry" class="btn btn-primary btn-lg">
+          Get Free Counselling <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a
+          href={waLink("Hello GB GROUP, I want information about Online MBA 2026-27 admissions in East India.")}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-whatsapp btn-lg"
+          data-track="whatsapp"
+          data-track-label="Online MBA hero WhatsApp"
+        >
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <div class="stat-band" aria-label="Online MBA highlights">
+        <div class="stat"><strong>2026–27</strong><span>Admissions open</span></div>
+        <div class="stat"><strong>04</strong><span>East India states</span></div>
+        <div class="stat"><strong>07</strong><span>Core specialisations</span></div>
+        <div class="stat"><strong>Free</strong><span>Career counselling</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><Breadcrumbs items={crumbs} /></div>
+
+  <section class="section" id="top-10">
+    <div class="container">
+      <div class="section--head" data-reveal>
+        <span class="eyebrow">Top 10 Online MBA Colleges &amp; Universities in India</span>
+        <h2>Compare verified UGC-DEB &amp; NAAC-accredited options.</h2>
+        <p class="lead">
+          Use the filters below to view the Top 10 Online MBA universities or browse all {totalCount}{" "}
+          verified Online, Distance (ODL), and Executive/Blended management options relevant to East
+          India learners.
+        </p>
+      </div>
+
+      <div class="fee-disclaimer" role="note">
+        <strong>Fee &amp; Programme Disclaimer:</strong> Fees shown below are indicative, subject to
+        change, and must be confirmed with the respective university before admission. Always verify
+        current UGC-DEB entitlement and exact eligibility criteria directly with the university.
+      </div>
+
+      <div class="filter-bar" aria-label="Filter universities">
+        <div class="filter-group">
+          <span>Filter by category</span>
+          <div class="filter-buttons" role="group" aria-label="University category filters">
+            <button class="filter-btn" type="button" data-mba-filter="all" aria-pressed="true">
+              All ({totalCount})
+            </button>
+            <button class="filter-btn" type="button" data-mba-filter="top10" aria-pressed="false">
+              Top 10 Online MBA ({top10List.length})
+            </button>
+            <button class="filter-btn" type="button" data-mba-filter="Online MBA" aria-pressed="false">
+              Online MBA
+            </button>
+            <button class="filter-btn" type="button" data-mba-filter="Distance (ODL)" aria-pressed="false">
+              Distance (ODL)
+            </button>
+            <button class="filter-btn" type="button" data-mba-filter="Executive / Blended" aria-pressed="false">
+              Executive / Blended
+            </button>
+          </div>
+        </div>
+        <div class="filter-count" data-mba-count aria-live="polite">
+          Showing {totalCount} of {totalCount} universities
+        </div>
+      </div>
+
+      <div class="mba-grid" data-mba-grid>
+        {
+          onlineMbaUniversities.map((uni, idx) => (
+            <article
+              class="mba-card"
+              data-mba-card
+              data-top10={uni.isTop10 ? "true" : "false"}
+              data-category={uni.category}
+            >
+              <div class="mba-card-head">
+                <div class="mba-card-badges">
+                  <span class="mba-badge">{uni.accreditation}</span>
+                  {uni.isTop10 && <span class="mba-rank">Top 10 · #{idx + 1}</span>}
+                </div>
+                <h3>{uni.name}</h3>
+                <p class="mba-highlights">{uni.highlights}</p>
+              </div>
+
+              <div class="mba-meta">
+                <div>
+                  <span>Starting / Indicative Fee</span>
+                  <strong>{uni.feeDisplay}</strong>
+                </div>
+                <div>
+                  <span>Course Duration</span>
+                  <strong>{uni.duration}</strong>
+                </div>
+                <div>
+                  <span>Study Mode</span>
+                  <strong>{uni.mode}</strong>
+                </div>
+                <div>
+                  <span>Category</span>
+                  <strong>{uni.category}</strong>
+                </div>
+              </div>
+
+              <p class="mba-eligibility">
+                <strong>Eligibility:</strong> {uni.eligibility}
+              </p>
+
+              <div class="mba-card-foot">
+                <a
+                  href="#mba-enquiry"
+                  class="btn btn-primary"
+                  data-enquire-uni={uni.name}
+                >
+                  Enquire now
+                </a>
+                <a
+                  href={waLink(`Hello GB GROUP, I would like details on ${uni.name} Online MBA (2026-27 batch).`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-ghost"
+                  data-track="whatsapp"
+                  data-track-label={`Online MBA card ${uni.id}`}
+                >
+                  WhatsApp
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="fee-footnote">
+        *Note: Fees are indicative, subject to change, and must be confirmed with the respective
+        university. GB GROUP does not charge students for initial admission counselling.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tint" id="counselling">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-copy" data-reveal>
+          <span class="eyebrow">Free Career Counselling · East India</span>
+          <h2>Finding it difficult to choose the right Online MBA university?</h2>
+          <p class="lead">
+            With multiple universities offering different fee structures, specialisations, and
+            study formats, picking the right programme matters. Speak directly with GB GROUP's
+            counselling desk at zero cost.
+          </p>
+          <ul class="check-list">
+            <li>Compare UGC-DEB entitled universities side by side on fees, mode, and recognition</li>
+            <li>Personalised guidance for Bihar, Jharkhand, Odisha and West Bengal applicants</li>
+            <li>Eligibility check, document review, and semester-fee breakdown before applying</li>
+            <li>Dedicated support for working professionals and fresh graduates</li>
+          </ul>
+          <div class="hero-actions" style="margin-top:1.6rem">
+            <a href="#mba-enquiry" class="btn btn-primary">Book Free Counselling</a>
+            <a
+              href={waLink("Hello GB GROUP, I need free career counselling for an Online MBA.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-whatsapp"
+              data-track="whatsapp"
+              data-track-label="Online MBA counselling WhatsApp"
+            >
+              Talk on WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="feature-media" data-reveal>
+          <figure class="media-frame wide">
+            <img
+              src="/images/education-counselling.webp"
+              alt="GB GROUP career counsellor guiding a student"
+              loading="lazy"
+              decoding="async"
+              width="1000"
+              height="700"
+            />
+            <figcaption class="media-badge">One-to-one admission guidance</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="specialisations">
+    <div class="container">
+      <div class="section--head center" data-reveal>
+        <span class="eyebrow">Industry-relevant tracks</span>
+        <h2>MBA Specialisations Available</h2>
+        <p class="lead">
+          Choose a specialisation aligned with your career goals across corporate, technology,
+          operations, and healthcare sectors.
+        </p>
+      </div>
+      <div class="spec-grid">
+        {
+          onlineMbaSpecialisations.map((spec, index) => (
+            <div class="spec-card" data-reveal>
+              <span class="spec-num">0{index + 1}</span>
+              <h3>{spec.name}</h3>
+              <p>{spec.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint" id="mba-enquiry">
+    <div class="container">
+      <EnquiryForm
+        id="onlineMbaForm"
+        title="Request Free Online MBA Counselling"
+        intro="Share your preferred university, specialisation, and location in East India. Our team will reach out on WhatsApp or call with verified fee and admission details."
+        eyebrow="Online MBA 2026–27 Desk"
+        service="Education & Placement"
+        source="online-mba-east-india"
+      />
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section--head">
+        <span class="eyebrow">Good to know</span>
+        <h2>Online MBA Frequently Asked Questions</h2>
+      </div>
+      <FAQ items={onlineMbaFaqs} />
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="cta-band" data-reveal>
+        <div>
+          <span class="eyebrow">Need quick answers?</span>
+          <h2>Speak with GB GROUP directly.</h2>
+          <p>
+            Whether you are in Patna, Ranchi, Jamshedpur, Bhubaneswar, Cuttack, or Kolkata, we help
+            you shortlist and verify the right Online MBA programme.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a
+            href={waLink("Hello GB GROUP, please help me choose an Online MBA university for 2026-27.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-whatsapp btn-lg"
+            data-track="whatsapp"
+            data-track-label="Online MBA bottom WhatsApp"
+          >
+            Chat on WhatsApp
+          </a>
+          <a href="/services/education-placement" class="btn btn-outline btn-lg">
+            Education &amp; Placement <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-mba-filter]"));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-mba-card]"));
+  const countEl = document.querySelector<HTMLElement>("[data-mba-count]");
+
+  function applyFilter(filter: string) {
+    let visible = 0;
+    for (const card of cards) {
+      const isTop10 = card.dataset.top10 === "true";
+      const category = card.dataset.category || "";
+      const show =
+        filter === "all" ||
+        (filter === "top10" && isTop10) ||
+        category === filter;
+      card.hidden = !show;
+      if (show) visible++;
+    }
+    if (countEl) {
+      countEl.textContent = `Showing ${visible} of ${cards.length} universities`;
+    }
+    for (const btn of filterButtons) {
+      btn.setAttribute("aria-pressed", String(btn.dataset.mbaFilter === filter));
+    }
+  }
+
+  for (const btn of filterButtons) {
+    btn.addEventListener("click", () => {
+      applyFilter(btn.dataset.mbaFilter || "all");
+    });
+  }
+
+  const enquireLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-enquire-uni]"));
+  const messageField = document.querySelector<HTMLTextAreaElement>("#onlineMbaForm-message");
+  const nameField = document.querySelector<HTMLInputElement>("#onlineMbaForm-name");
+
+  for (const link of enquireLinks) {
+    link.addEventListener("click", () => {
+      const uniName = link.dataset.enquireUni;
+      if (messageField && uniName) {
+        messageField.value = `Interested in Online MBA 2026-27 admission at ${uniName}. Please share verified fee, eligibility, and admission process.`;
+      }
+      if (nameField) {
+        setTimeout(() => nameField.focus({ preventScroll: true }), 300);
+      }
+    });
+  }
+</script>
+
+<style>
+  .fee-disclaimer {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 4px solid #d97706;
+    color: #78350f;
+    padding: 0.95rem 1.15rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .fee-footnote {
+    margin-top: 1.4rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .mba-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+
+  @media (min-width: 640px) {
+    .mba-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mba-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .mba-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.3rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .mba-card[hidden] {
+    display: none;
+  }
+
+  .mba-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 38px rgba(15, 34, 82, 0.14);
+  }
+
+  .mba-card-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .mba-badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent-text, var(--accent));
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+  }
+
+  .mba-rank {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .mba-card-head h3 {
+    font-size: 1.15rem;
+    color: var(--navy-deep);
+    margin-bottom: 0.35rem;
+  }
+
+  .mba-highlights {
+    font-size: 0.87rem;
+    color: var(--muted);
+  }
+
+  .mba-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+  }
+
+  .mba-meta div {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .mba-meta span {
+    display: block;
+    font-size: 0.67rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .mba-meta strong {
+    display: block;
+    font-size: 0.84rem;
+    color: var(--ink);
+    margin-top: 0.15rem;
+  }
+
+  .mba-eligibility {
+    font-size: 0.84rem;
+    color: #36445c;
+    flex: 1;
+  }
+
+  .mba-card-foot {
+    display: flex;
+    gap: 0.6rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .mba-card-foot .btn {
+    flex: 1;
+    min-height: 42px;
+    font-size: 0.84rem;
+    padding-inline: 0.8rem;
+  }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  @media (min-width: 640px) {
+    .spec-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .spec-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .spec-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+  }
+
+  .spec-num {
+    display: inline-block;
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--accent-text, var(--accent));
+    background: var(--accent-soft);
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    margin-bottom: 0.65rem;
+  }
+
+  .spec-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+    color: var(--navy-deep);
+  }
+
+  .spec-card p {
+    font-size: 0.87rem;
+    color: var(--muted);
+  }
+</style>
