@@ -15,7 +15,10 @@ interface Props {
   title: string;
   description: string;
   canonicalPath?: string;
+  ogUrl?: string;
   ogImage?: string;
+  ogImageType?: string;
+  ogImageAlt?: string;
   schema?: Record<string, unknown> | Record<string, unknown>[];
   breadcrumbs?: { label: string; href?: string }[];
   accent?: string;
@@ -27,7 +30,10 @@ const {
   title,
   description,
   canonicalPath = "",
+  ogUrl,
   ogImage = "/og-image.png",
+  ogImageType = "image/png",
+  ogImageAlt = "GB GROUP — four services under one roof in Jharkhand and West Bengal",
   schema,
   breadcrumbs,
   accent = "#0284c7",
@@ -36,6 +42,7 @@ const {
 } = Astro.props;
 
 const canonicalUrl = canonicalPath ? `${site.url}${canonicalPath}` : site.url;
+const resolvedOgUrl = ogUrl || canonicalUrl;
 const imageUrl = ogImage.startsWith("http") ? ogImage : `${site.url}${ogImage}`;
 const extraSchema = Array.isArray(schema) ? schema : schema ? [schema] : [];
 const graph = [
@@ -72,22 +79,22 @@ const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": grap
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_IN" />
-    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:url" content={resolvedOgUrl} />
     <meta property="og:site_name" content={site.brand} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:secure_url" content={imageUrl} />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:type" content={ogImageType} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="GB GROUP — four services under one roof in Jharkhand and West Bengal" />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
-    <meta name="twitter:image:alt" content="GB GROUP — four services under one roof in Jharkhand and West Bengal" />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <script type="application/ld+json" set:html={jsonLd} />
     <noscript>

@@ -12,9 +12,9 @@ import {
 } from "../data/onlineMba";
 
 const pageTitle =
-  "Online MBA Admissions 2026–27 in East India (Bihar, Jharkhand, Odisha, WB) | GB GROUP";
+  "Online MBA Admissions 2027–28 in East India (Bihar, Jharkhand, Odisha, WB) | GB GROUP";
 const pageDescription =
-  "Compare UGC-DEB entitled Online MBA universities for students and working professionals in Bihar, Jharkhand, Odisha and West Bengal. Free career counselling and admission support from GB GROUP.";
+  "Admission Open 2027–28 Batch: Compare UGC-DEB entitled Online MBA universities for students and working professionals in Bihar, Jharkhand, Odisha and West Bengal. Free career counselling from GB GROUP.";
 
 const crumbs = [
   { label: "Home", href: "/" },
@@ -31,6 +31,10 @@ const top10List = onlineMbaUniversities.filter((u) => u.isTop10);
   title={pageTitle}
   description={pageDescription}
   canonicalPath="/online-mba-east-india"
+  ogUrl="https://gbgroup.pro/online-mba-east-india/"
+  ogImage="https://gbgroup.pro/images/og-online-mba-east-india.jpg"
+  ogImageType="image/jpeg"
+  ogImageAlt="Admission Open 2027–28 Batch — Online MBA for East India by GB GROUP"
   accent="education"
   breadcrumbs={crumbs}
   schema={[
@@ -53,7 +57,7 @@ const top10List = onlineMbaUniversities.filter((u) => u.isTop10);
       fetchpriority="high"
     />
     <div class="container">
-      <span class="eyebrow">Admission Open · Online MBA 2026–27 Batch</span>
+      <span class="eyebrow">Admission Open · Online MBA 2027–28 Batch</span>
       <h1>Top-Ranked Online MBA Programmes for East India.</h1>
       <p class="hero-sub">
         Designed for graduates and working professionals across Bihar, Jharkhand, Odisha and West
@@ -65,7 +69,7 @@ const top10List = onlineMbaUniversities.filter((u) => u.isTop10);
           Get Free Counselling <span class="arrow" aria-hidden="true">→</span>
         </a>
         <a
-          href={waLink("Hello GB GROUP, I want information about Online MBA 2026-27 admissions in East India.")}
+          href={waLink("Hello GB GROUP, I want information about Online MBA 2027-28 admissions in East India.")}
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-whatsapp btn-lg"
@@ -77,7 +81,7 @@ const top10List = onlineMbaUniversities.filter((u) => u.isTop10);
       </div>
 
       <div class="stat-band" aria-label="Online MBA highlights">
-        <div class="stat"><strong>2026–27</strong><span>Admissions open</span></div>
+        <div class="stat"><strong>2027–28</strong><span>Admissions open</span></div>
         <div class="stat"><strong>04</strong><span>East India states</span></div>
         <div class="stat"><strong>07</strong><span>Core specialisations</span></div>
         <div class="stat"><strong>Free</strong><span>Career counselling</span></div>
@@ -181,7 +185,7 @@ const top10List = onlineMbaUniversities.filter((u) => u.isTop10);
                   Enquire now
                 </a>
                 <a
-                  href={waLink(`Hello GB GROUP, I would like details on ${uni.name} Online MBA (2026-27 batch).`)}
+                  href={waLink(`Hello GB GROUP, I would like details on ${uni.name} Online MBA (2027-28 batch).`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="btn btn-ghost"
@@ -281,7 +285,7 @@ const top10List = onlineMbaUniversities.filter((u) => u.isTop10);
         id="onlineMbaForm"
         title="Request Free Online MBA Counselling"
         intro="Share your preferred university, specialisation, and location in East India. Our team will reach out on WhatsApp or call with verified fee and admission details."
-        eyebrow="Online MBA 2026–27 Desk"
+        eyebrow="Online MBA 2027–28 Desk"
         service="Education & Placement"
         source="online-mba-east-india"
       />
@@ -311,7 +315,7 @@ const top10List = onlineMbaUniversities.filter((u) => u.isTop10);
         </div>
         <div class="cta-actions">
           <a
-            href={waLink("Hello GB GROUP, please help me choose an Online MBA university for 2026-27.")}
+            href={waLink("Hello GB GROUP, please help me choose an Online MBA university for 2027-28.")}
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-whatsapp btn-lg"
@@ -368,7 +372,7 @@ const top10List = onlineMbaUniversities.filter((u) => u.isTop10);
     link.addEventListener("click", () => {
       const uniName = link.dataset.enquireUni;
       if (messageField && uniName) {
-        messageField.value = `Interested in Online MBA 2026-27 admission at ${uniName}. Please share verified fee, eligibility, and admission process.`;
+        messageField.value = `Interested in Online MBA 2027-28 admission at ${uniName}. Please share verified fee, eligibility, and admission process.`;
       }
       if (nameField) {
         setTimeout(() => nameField.focus({ preventScroll: true }), 300);

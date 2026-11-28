@@ -267,7 +267,7 @@ export const onlineMbaFaqs = [
     a: "Yes, provided the degree is offered by a university with active UGC-DEB entitlement for that academic session. Before applying, always confirm the university's current UGC-DEB status and programme recognition.",
   },
   {
-    q: "Who can apply for the Online MBA 2026–27 batch?",
+    q: "Who can apply for the Online MBA 2027–28 batch?",
     a: "Most UGC-entitled Online MBA programmes accept graduates from any recognised discipline (typically with 50% aggregate marks, or 45% for reserved categories). Executive or work-integrated programmes such as BITS Pilani WILP or XLRI Blended PGDM require prior full-time work experience.",
   },
   {
