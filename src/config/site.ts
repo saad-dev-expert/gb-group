@@ -58,18 +58,6 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    key: "transport",
-    title: "Transport & Export",
-    short: "Move cargo across eastern India and to the ports.",
-    path: "/services/transport-export",
-    image: "/images/transport-fleet.webp",
-    imageAlt: "Commercial freight truck on a highway",
-    kicker: "Logistics & trade",
-    summary:
-      "Freight movement, industrial cargo and export coordination between Jharkhand, West Bengal and the Kolkata / Haldia ports.",
-    accent: "#0284c7",
-  },
-  {
     key: "education",
     title: "Education & Placement",
     short: "Admissions, career guidance and job placement.",
@@ -80,6 +68,18 @@ export const services: Service[] = [
     summary:
       "Course selection, admission support, career counselling and verified placement assistance for students and professionals.",
     accent: "#0f9f8f",
+  },
+  {
+    key: "transport",
+    title: "Transport & Export",
+    short: "Move cargo across eastern India and to the ports.",
+    path: "/services/transport-export",
+    image: "/images/transport-fleet.webp",
+    imageAlt: "Commercial freight truck on a highway",
+    kicker: "Logistics & trade",
+    summary:
+      "Freight movement, industrial cargo and export coordination between Jharkhand, West Bengal and the Kolkata / Haldia ports.",
+    accent: "#0284c7",
   },
   {
     key: "land",
